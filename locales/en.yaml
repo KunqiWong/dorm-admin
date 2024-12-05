@@ -68,10 +68,12 @@ menus:
   pureFourZeroOne: "403"
   pureFive: "500"
   purePermission: Permission Manage
-  purePermissionPage: Page Permission
+  purePermissionPage: User Permission
   purePermissionButton: Button Permission
   purePermissionButtonRouter: Route return button permission
   purePermissionButtonLogin: Login interface return button permission
+  userName: UserName
+  status: Status
 status:
   pureLoad: Loading...
   pureMessage: Message

@@ -6,7 +6,7 @@ import { message } from "@/utils/message";
 import { loginRules } from "./utils/rule";
 import { useNav } from "@/layout/hooks/useNav";
 import type { FormInstance } from "element-plus";
-import { transformI18n } from "@/plugins/i18n";
+import { $t, transformI18n } from "@/plugins/i18n";
 import { useLayout } from "@/layout/hooks/useLayout";
 import { useUserStoreHook } from "@/store/modules/user";
 import { initRouter, getTopMenu } from "@/router/utils";
@@ -33,7 +33,7 @@ const ruleFormRef = ref<FormInstance>();
 const { initStorage } = useLayout();
 initStorage();
 
-// const { t } = useI18n();
+const { t } = useI18n();
 const { dataTheme, overallStyle, dataThemeChange } = useDataThemeChange();
 dataThemeChange(overallStyle.value);
 const { title, getDropdownItemStyle, getDropdownItemClass } = useNav();
@@ -56,11 +56,11 @@ const onLogin = async (formEl: FormInstance | undefined) => {
             // 获取后端路由
             return initRouter().then(() => {
               router.push(getTopMenu(true).path).then(() => {
-                message(transformI18n("login.pureLoginSuccess"), { type: "success" });
+                message(t("login.pureLoginSuccess"), { type: "success" });
               });
             });
           } else {
-            message(transformI18n("login.pureLoginFail"), { type: "error" });
+            message(t("login.pureLoginFail"), { type: "error" });
           }
         })
         .finally(() => (loading.value = false));
@@ -135,6 +135,7 @@ onBeforeUnmount(() => {
       </div>
       <div class="login-box">
         <div class="login-form">
+          <avatar class="avatar" />
           <Motion>
             <h2 class="outline-none">{{ title }}</h2>
           </Motion>
@@ -150,7 +151,7 @@ onBeforeUnmount(() => {
                 :rules="[
                   {
                     required: true,
-                    message: transformI18n('login.pureUsernameReg'),
+                    message: transformI18n($t('login.pureUsernameReg')),
                     trigger: 'blur'
                   }
                 ]"
@@ -159,7 +160,7 @@ onBeforeUnmount(() => {
                 <el-input
                   v-model="ruleForm.username"
                   clearable
-                  :placeholder="transformI18n('login.pureUsername')"
+                  :placeholder="t('login.pureUsername')"
                   :prefix-icon="useRenderIcon(User)"
                 />
               </el-form-item>
@@ -171,7 +172,7 @@ onBeforeUnmount(() => {
                   v-model="ruleForm.password"
                   clearable
                   show-password
-                  :placeholder="transformI18n('login.purePassword')"
+                  :placeholder="t('login.purePassword')"
                   :prefix-icon="useRenderIcon(Lock)"
                 />
               </el-form-item>
@@ -185,7 +186,7 @@ onBeforeUnmount(() => {
                 :loading="loading"
                 @click="onLogin(ruleFormRef)"
               >
-                {{ transformI18n("login.pureLogin") }}
+                {{ t("login.pureLogin") }}
               </el-button>
             </Motion>
           </el-form>

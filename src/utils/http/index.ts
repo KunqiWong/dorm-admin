@@ -137,6 +137,7 @@ class PureHttp {
         if (typeof response.data.data === 'string') {
           response.data.data = JSON.parse(response.data.data);
         }
+
         return response.data;
       },
       (error: PureHttpError) => {

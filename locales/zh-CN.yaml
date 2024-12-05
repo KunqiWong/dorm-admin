@@ -68,10 +68,12 @@ menus:
   pureFourZeroOne: "403"
   pureFive: "500"
   purePermission: 权限管理
-  purePermissionPage: 页面权限
+  purePermissionPage: 用户权限
   purePermissionButton: 按钮权限
   purePermissionButtonRouter: 路由返回按钮权限
   purePermissionButtonLogin: 登录接口返回按钮权限
+  userName: 用户名
+  status: 状态
 status:
   pureLoad: 加载中...
   pureMessage: 消息

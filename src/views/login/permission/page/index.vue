@@ -9,7 +9,7 @@
                      class="w-full" />
           </el-form-item>
           <el-form-item label="状态 Status">
-            <el-select v-model="queryParams.status" placeholder="Status" clearable
+            <el-select v-model="queryParams.status" placeholder="状态 Status" clearable
                       class="w-full">
               <el-option
                 v-for="(item, index) in statuses"
@@ -174,6 +174,8 @@ import { ref, reactive, onMounted } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import type { FormInstance } from 'element-plus'
 import { getAdminList, changeAdmin, createAdmin, resetAdmin } from '@/api/user'
+import { useI18n } from "vue-i18n";
+import { $t, transformI18n } from "@/plugins/i18n";
 
 // 响应式状态
 const loading = ref(false)
@@ -183,6 +185,8 @@ const adminList = ref([])
 const formRef = ref<FormInstance>()
 
 const pageSizes = [10, 20, 30, 40]
+
+const { t } = useI18n();
 
 const queryParams = reactive({
   pageNo: 1,

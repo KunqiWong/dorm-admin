@@ -78,6 +78,7 @@ export function transformI18n(message: any = "") {
   if (!message) {
     return "";
   }
+
   // 处理存储动态路由的title,格式 {zh:"",en:""}
   if (typeof message === "object") {
     const locale: string | WritableComputedRef<string> | any =
@@ -86,6 +87,7 @@ export function transformI18n(message: any = "") {
   }
 
   const key = message.match(/(\S*)\./)?.input;
+
   if (key && flatI18n("zh-CN").has(key)) {
     return i18n.global.t.call(i18n.global.locale, message);
   } else if (!key && Object.hasOwn(siphonI18n("zh-CN"), message)) {
