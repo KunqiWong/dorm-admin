@@ -1,4 +1,4 @@
-import { $t } from "@/plugins/i18n";
+import { $t, transformI18n } from "@/plugins/i18n";
 const { VITE_HIDE_HOME } = import.meta.env;
 const Layout = () => import("@/layout/index.vue");
 
@@ -6,21 +6,21 @@ export default {
   path: "/",
   name: "Home",
   component: Layout,
-  redirect: "/welcome",
+  redirect: "/building",
   meta: {
     icon: "ep:home-filled",
-    title: $t("menus.pureHome"),
+    title: $t("sidebar.building"),
     rank: 0
   },
   children: [
     {
-      path: "/welcome",
-      name: "Welcome",
-      component: () => import("@/views/welcome/index.vue"),
+      path: "/building",
+      name: "Building",
+      component: () => import("@/views/building/index.vue"),
       meta: {
-        title: $t("menus.pureHome"),
-        showLink: VITE_HIDE_HOME === "true" ? false : true
+        title: $t("sidebar.building"),
+        roles: ["admin", "super"]
       }
     }
   ]
-} satisfies RouteConfigsTable;
+};

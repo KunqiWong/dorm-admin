@@ -91,3 +91,33 @@ login:
   pureUsernameReg: 请输入账号
   purePassWordReg: 请输入密码
   purePassWordRuleReg: 密码格式应为8-18位数字、字母、符号的任意两种组合
+permission:
+  username: 用户名
+  status: 状态
+  search: 搜索
+  add: 添加
+  operations: 操作
+  createTime: 创建时间
+  resetPassword: 重置密码
+  enable: 启用
+  disable: 禁用
+  addAccount: 添加账号
+  password: 密码
+  confirmPassword: 确认密码
+  usernamePlaceholder: 请输入用户名
+  passwordPlaceholder: 请输入密码
+  confirmPasswordPlaceholder: 请再次输入密码
+  cancel: 取消
+  submit: 提交
+  sure: 确定
+sidebar:
+  building: 楼栋管理
+  checkIn: 入住管理
+  checkOut: 退宿记录
+  employeeSearch: 员工管理
+  operationRecords: 操作记录
+  departmentStatistics: 部门统计
+  occupancyRate: 入住率
+  roomSwap: 房间调换
+  buildingEmployeeInfo: 楼栋员工信息
+  reports: 报表

@@ -34,19 +34,19 @@ panel:
   pureOverallStyleLight: Light
   pureOverallStyleLightTip: Set sail freshly and light up the comfortable work interface
   pureOverallStyleDark: Dark
-  pureOverallStyleDarkTip: Moonlight Overture, indulge in the tranquility and elegance of the night
+  pureOverallStyleDarkTip: Moonlight Overture indulge in the tranquility and elegance of the night
   pureOverallStyleSystem: Auto
-  pureOverallStyleSystemTip: Synchronize time, the interface naturally responds to morning and dusk
+  pureOverallStyleSystemTip: Synchronize time the interface naturally responds to morning and dusk
   pureThemeColor: Theme Color
   pureLayoutModel: Layout Model
   pureVerticalTip: The menu on the left is familiar and friendly
-  pureHorizontalTip: Top menu, concise overview
-  pureMixTip: Mixed menu, flexible
+  pureHorizontalTip: Top menu concise overview
+  pureMixTip: Mixed menu flexible
   pureStretch: Stretch Page
   pureStretchFixed: Fixed
   pureStretchFixedTip: Compact pages make it easy to find the information you need
   pureStretchCustom: Custom
-  pureStretchCustomTip: Minimum 1280, maximum 1600
+  pureStretchCustomTip: Minimum 1280 maximum 1600
   pureTagsStyle: Tags Style
   pureTagsStyleSmart: Smart
   pureTagsStyleSmartTip: Smart tags add fun and brilliance
@@ -91,3 +91,33 @@ login:
   pureUsernameReg: Please enter username
   purePassWordReg: Please enter password
   purePassWordRuleReg: The password format should be any combination of 8-18 digits
+permission: 
+  username: Username
+  status: Status
+  search: Search
+  add: Add
+  operations: Operations
+  createTime: Create Time
+  resetPassword: Reset Password
+  enable: Enable
+  disable: Disable
+  addAccount: Add Account
+  password: Password
+  confirmPassword: Confirm Password
+  usernamePlaceholder: Please input username
+  passwordPlaceholder: Please input password
+  confirmPasswordPlaceholder: Please confirm password
+  cancel: Cancel
+  submit: Submit
+  sure: Sure
+sidebar:
+  building: Building Management
+  checkIn: Check In
+  checkOut: Check Out Record
+  employeeSearch: Employee Management
+  operationRecords: Operation Records
+  departmentStatistics: Department Statistics
+  occupancyRate: Occupancy Rate
+  roomSwap: Room Swap
+  buildingEmployeeInfo: Building Employee Info
+  reports: Reports

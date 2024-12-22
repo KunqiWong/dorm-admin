@@ -17,7 +17,7 @@ import { useUserStoreHook } from "@/store/modules/user";
 // 相关配置请参考：www.axios-js.com/zh-cn/docs/#axios-request-config-1
 const defaultConfig: AxiosRequestConfig = {
   // 请求超时时间
-  timeout: 10000,
+  timeout: 300000,
   headers: {
     Accept: "application/json, text/plain, */*",
     "Content-Type": "application/json",
@@ -77,37 +77,37 @@ class PureHttp {
         return whiteList.some(url => config.url.endsWith(url))
           ? config
           : new Promise(resolve => {
-            const data = getToken();
-            if (data) {
-              const now = new Date().getTime();
-              const expired = parseInt(data.expires) - now <= 0;
-              if (expired) {
-                if (!PureHttp.isRefreshing) {
-                  PureHttp.isRefreshing = true;
-                  // token过期刷新
-                  // useUserStoreHook()
-                  //   .handRefreshToken({ refreshToken: data.refreshToken })
-                  //   .then(res => {
-                  //     const token = res.data.accessToken;
-                  //     config.headers["Authorization"] = formatToken(token);
-                  //     PureHttp.requests.forEach(cb => cb(token));
-                  //     PureHttp.requests = [];
-                  //   })
-                  //   .finally(() => {
-                  //     PureHttp.isRefreshing = false;
-                  //   });
+              const data = getToken();
+              if (data) {
+                const now = new Date().getTime();
+                const expired = parseInt(data.expires) - now <= 0;
+                if (expired) {
+                  if (!PureHttp.isRefreshing) {
+                    PureHttp.isRefreshing = true;
+                    // token过期刷新
+                    // useUserStoreHook()
+                    //   .handRefreshToken({ refreshToken: data.refreshToken })
+                    //   .then(res => {
+                    //     const token = res.data.accessToken;
+                    //     config.headers["Authorization"] = formatToken(token);
+                    //     PureHttp.requests.forEach(cb => cb(token));
+                    //     PureHttp.requests = [];
+                    //   })
+                    //   .finally(() => {
+                    //     PureHttp.isRefreshing = false;
+                    //   });
+                  }
+                  resolve(PureHttp.retryOriginalRequest(config));
+                } else {
+                  config.headers["Authorization"] = formatToken(
+                    data.accessToken
+                  );
+                  resolve(config);
                 }
-                resolve(PureHttp.retryOriginalRequest(config));
               } else {
-                config.headers["Authorization"] = formatToken(
-                  data.accessToken
-                );
                 resolve(config);
               }
-            } else {
-              resolve(config);
-            }
-          });
+            });
       },
       error => {
         return Promise.reject(error);
@@ -134,7 +134,7 @@ class PureHttp {
         }
         // JSON转换
         // console.log(typeof (response.data.data), response.data.data);
-        if (typeof response.data.data === 'string') {
+        if (typeof response.data.data === "string") {
           response.data.data = JSON.parse(response.data.data);
         }
 
