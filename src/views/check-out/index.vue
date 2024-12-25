@@ -20,6 +20,12 @@
           style="width: 100px"
         />
         <el-input
+          v-model="searchQuery.staffNum"
+          placeholder="工号"
+          clearable
+          style="width: 200px"
+        />
+        <el-input
           v-model="searchQuery.passportNo"
           placeholder="护照号"
           clearable
@@ -48,6 +54,7 @@
         <el-table-column prop="operator" label="登记人" width="100" />
         <el-table-column prop="roomInfo" label="房间信息" width="200" />
         <el-table-column prop="staffName" label="员工姓名" width="100" />
+        <el-table-column prop="staffNum" label="工号" width="100" />
         <el-table-column prop="passportNo" label="护照号" width="150" />
         <el-table-column prop="sex" label="性别" width="100" />
         <el-table-column prop="dept" label="部门" width="200" />
@@ -98,6 +105,7 @@ const searchQuery = ref({
   operator: "",
   staffName: "",
   passportNo: "",
+  staffNum: "",
   timeRange: []
 });
 function formatDate(date) {
@@ -115,6 +123,7 @@ const fetchCheckOutList = async () => {
       operator: searchQuery.value.operator,
       staffName: searchQuery.value.staffName,
       passportNo: searchQuery.value.passportNo,
+      staffNum: searchQuery.value.staffNum,
       startTime: formatDate(searchQuery.value.timeRange[0]) || "",
       endTime: formatDate(searchQuery.value.timeRange[1]) || ""
     };

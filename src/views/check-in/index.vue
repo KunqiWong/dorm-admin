@@ -1193,6 +1193,7 @@ function formatDate(date) {
 const checkOut = async ()=>{
   checkOutForm.value.roomInfo = onlyOneSelection.value.buildingNum+onlyOneSelection.value.floor+onlyOneSelection.value.roomNum;
   checkOutForm.value.staffName = onlyOneSelection.value.staffName;
+  checkOutForm.value.staffNum = onlyOneSelection.value.staffNum;
   checkOutForm.value.sex = onlyOneSelection.value.sex;
   checkOutForm.value.dept = onlyOneSelection.value.dept;
   checkOutForm.value.checkinDate = onlyOneSelection.value.checkinDate;
@@ -1200,6 +1201,7 @@ const checkOut = async ()=>{
   checkOutForm.value.leaveDate = formatDate(checkOutForm.value.leaveDate);
   checkOutForm.value.staffId = onlyOneSelection.value.id;
   await checkOutStaff(checkOutForm.value)
+  ElMessage.success("退宿成功！");
   const response = await getEmployeeListByBuilding({
     query: refreshQuery.value,
     pageNo: currentPage.value,
