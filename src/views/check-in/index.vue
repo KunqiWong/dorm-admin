@@ -167,7 +167,7 @@
           办理退宿
         </el-button>
 
-        <el-button type="primary" @click="openDialog(null)">
+        <el-button type="primary" @click="printRoom">
           <el-icon><Edit /></el-icon>
           打印门牌
         </el-button>
@@ -175,7 +175,7 @@
         <el-button
           type="primary"
           :disabled="!selection || selectionLength !== 1"
-          @click="keyVisible = true"
+          @click="printProof"
         >
           <el-icon><Edit /></el-icon>
           打印退宿证明
@@ -717,7 +717,7 @@
         </div>
         <template #footer>
           <div class="flex justify-end">
-            <el-button type="primary" @click="keyApply">申请</el-button>
+            <el-button type="primary" @click="printKey">申请</el-button>
             <el-button @click="keyVisible = false">取消</el-button>
           </div>
         </template>
@@ -1180,6 +1180,11 @@ const exchangeRoom = async () => {
 const exchangeApply = async () => {
   await exchangeRoomApply(exchangeApplyForm.value);
   ElMessage.success("申请成功！");
+  if(checkedInner.value){
+    printApply();
+  }else{
+    printCrossApply();
+  }
   exchangeVisible.value = false;
 }
 function formatDate(date) {
@@ -1202,6 +1207,11 @@ const checkOut = async ()=>{
   checkOutForm.value.staffId = onlyOneSelection.value.id;
   await checkOutStaff(checkOutForm.value)
   ElMessage.success("退宿成功！");
+  if(checkedInner.value){
+    printOutProof();
+  }else{
+    printProof();
+  }
   const response = await getEmployeeListByBuilding({
     query: refreshQuery.value,
     pageNo: currentPage.value,
@@ -1230,6 +1240,41 @@ const handleSelectionChange = data => {
     exchangeApplyForm.value.roomNum = onlyOneSelection.value.roomNum;
   }
 };
+//打印退宿证明
+const printProof = () => {
+  const reportPath = "http://localhost:8075/webroot/decision/view/report?viewlet=checkout.cpt&op=view"; // 报表路径
+
+  window.open(reportPath+`&staffName=${onlyOneSelection.value.staffName}&roomNum=${onlyOneSelection.value.roomNum}`, "_blank");
+};
+//打印外协退宿证明
+const printOutProof = () => {
+  const reportPath = "http://localhost:8075/webroot/decision/view/report?viewlet=checkout.cpt&op=view"; // 报表路径
+
+  window.open(reportPath+`&staffName=${onlyOneSelection.value.staffName}&roomNum=${onlyOneSelection.value.roomNum}`, "_blank");
+};
+//打印门牌
+const printRoom = () => {
+  const reportPath = "http://localhost:8075/webroot/decision/view/report?viewlet=room.cpt&op=view"; // 报表路径
+
+  window.open(reportPath+`&buildingNum=${onlyOneSelection.value.buildingNum}&roomNum=${onlyOneSelection.value.roomNum}`, "_blank");
+};
+//打印钥匙
+const printKey = () => {
+  const reportPath = "http://localhost:8075/webroot/decision/view/report?viewlet=%25E9%2592%25A5%25E5%258C%2599%25E7%2594%25B3%25E8%25AF%25B7%25E5%258D%2595.cpt"; // 报表路径
+
+  window.open(reportPath+`&staffName=${onlyOneSelection.value.staffName}&roomNum=${onlyOneSelection.value.roomNum}&keyNum=${keyForm.value.num}&reason=${keyForm.value.reason}`, "_blank");
+};
+//打印跨区调换申请
+const printCrossApply = () => {
+  const reportPath = "http://localhost:8075/webroot/decision/view/report?viewlet=%25E5%25A4%2596%25E5%258D%2594%25E7%2594%25B3%25E8%25AF%25B7%25E5%258D%2595.cpt"; // 报表路径
+  window.open(reportPath+`&staffName=${onlyOneSelection.value.staffName}&roomNum=${onlyOneSelection.value.roomNum}&keyNum=${keyForm.value.num}&reason=${keyForm.value.reason}`, "_blank");
+};
+//打印内调申请
+const printApply = () => {
+  const reportPath = "http://localhost:8075/webroot/decision/view/report?viewlet=%25E5%25A4%2596%25E5%258D%2594%25E7%2594%25B3%25E8%25AF%25B7%25E5%258D%2595.cpt"; // 报表路径
+  window.open(reportPath+`&staffName=${onlyOneSelection.value.staffName}&roomNum=${onlyOneSelection.value.roomNum}&keyNum=${keyForm.value.num}&reason=${keyForm.value.reason}`, "_blank");
+};
+
 onMounted(() => {
   fetchBuildingTreeData();
 });
