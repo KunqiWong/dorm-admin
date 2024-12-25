@@ -151,25 +151,26 @@ const handlePageChange = (page: number) => {
 const handleExport = async () => {
   const headers = [
     { label: "登记人", key: "operator" },
-    { label: "房间信息", key: "room_info" },
-    { label: "员工姓名", key: "staff_name" },
-    { label: "护照号", key: "passport_no" },
+    { label: "房间信息", key: "roomInfo" },
+    { label: "员工姓名", key: "staffName" },
+    { label: "工号", key: "staffNum" },
+    { label: "护照号", key: "passportNo" },
     { label: "性别", key: "sex" },
     { label: "部门", key: "dept" },
     { label: "公司", key: "company" },
-    { label: "入住日期", key: "checkin_date" },
-    { label: "退宿日期", key: "checkout_date" },
-    { label: "出矿日期", key: "leave_date" },
-    { label: "钥匙", key: "key_flag" },
-    { label: "饭卡", key: "card_flag" },
-    { label: "床上用品", key: "bedding_flag" },
-    { label: "枕头", key: "pillow_flag" },
+    { label: "入住日期", key: "checkinDate" },
+    { label: "退宿日期", key: "checkoutDate" },
+    { label: "出矿日期", key: "leaveDate" },
+    { label: "钥匙", key: "keyFlag" },
+    { label: "饭卡", key: "cardFlag" },
+    { label: "床上用品", key: "beddingFlag" },
+    { label: "枕头", key: "pillowFlag" },
     { label: "脸盆", key: "basin" },
     { label: "押金", key: "deposit" },
-    { label: "退宿理由", key: "leave_reason" },
+    { label: "退宿理由", key: "leaveReason" },
     { label: "备注", key: "remark" },
-    { label: "创建人", key: "create_by" },
-    { label: "创建时间", key: "create_time" }
+    { label: "创建人", key: "createBy" },
+    { label: "创建时间", key: "createTime" }
   ];
 
   try {
@@ -188,9 +189,8 @@ const handleExport = async () => {
     const ws = XLSX.utils.aoa_to_sheet(exportData);
 
     // 设置列宽
-    ws["!cols"] = [];
-
-    // 设置表头样式
+    ws["!cols"] = headers.map(() => ({ wch: 20 }));
+   // 设置表头样式
     const headerStyle = {
       font: { bold: true, color: { rgb: "FFFFFF" } },
       fill: { fgColor: { rgb: "808080" } },
@@ -204,7 +204,6 @@ const handleExport = async () => {
         ws[cellAddress].s = headerStyle;
       }
     });
-
     // 为每个单元格添加边框
     const borderStyle = {
       top: { style: "thin", color: { rgb: "000000" } },
@@ -229,10 +228,11 @@ const handleExport = async () => {
       }
     }
 
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "日志记录");
 
-    XLSX.writeFile(wb, "操作日志.xlsx", { compression: true });
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "退宿记录");
+
+    XLSX.writeFile(wb, "退宿记录.xlsx", { compression: true });
   } catch (error) {
     ElMessage.error("导出失败！");
   }

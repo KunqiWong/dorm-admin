@@ -404,15 +404,19 @@ const handleExport = async () => {
   // 遍历每个单元格并添加边框
   const rows = exportData.length;
   const cols = exportData[0].length;
-  for (let r = 0; r < rows; r++) {
-    for (let c = 0; c < cols; c++) {
-      const cellAddress = XLSX.utils.encode_cell({ r, c });
-      if (!ws[cellAddress]) {
-        ws[cellAddress] = { v: "" }; // 如果单元格为空，先设置一个空值
+   for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const cellAddress = XLSX.utils.encode_cell({ r, c });
+        if (!ws[cellAddress]) {
+          ws[cellAddress] = { v: "" }; // 如果单元格为空，先设置一个空值
+        }
+        if (!ws[cellAddress].s) {
+          ws[cellAddress].s = {}; // 确保没有覆盖已有样式
+        }
+        ws[cellAddress].s.border = borderStyle; // 为每个单元格添加边框
       }
-      ws[cellAddress].s = { border: borderStyle }; // 为每个单元格添加边框
     }
-  }
+
 
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
