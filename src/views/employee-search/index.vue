@@ -153,7 +153,11 @@
           <el-input v-model="form.keyFlag" />
         </el-form-item>
         <el-form-item label="入住日期" prop="checkinDate">
-          <el-input type="date" v-model="form.checkinDate" />
+          <el-date-picker
+            v-model="form.checkinDate"
+            type="date"
+            placeholder="选择日期"
+          />
         </el-form-item>
         <el-form-item label="入住押金" prop="deposit">
           <el-input v-model="form.deposit" />
@@ -289,8 +293,17 @@ const openDialog = (row: any) => {
   dialogVisible.value = true;
 };
 
+function formatDate(date) {
+  if (!date) return ""; // 如果没有日期，返回空字符串
+  const d = new Date(date);
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, "0"); // 获取月份并确保两位数
+  const day = String(d.getDate()).padStart(2, "0"); // 获取日期并确保两位数
+  return `${year}-${month}-${day}`; // 返回格式化的日期
+}
 // Save employee
 const saveEmployee = async () => {
+  form.value.checkinDate = formatDate(form.value.checkinDate);
   try {
     await formRef.value.validate();
     await saveEmployeeInfo(form.value);

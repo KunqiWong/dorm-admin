@@ -150,9 +150,18 @@
         </el-button>
 
         <el-button
+          type="success"
+          :disabled="!selection || selectionLength !== 1"
+          @click="exchangeVisible = true"
+        >
+          <el-icon><Edit /></el-icon>
+          打印调换申请单
+        </el-button>
+
+        <el-button
           type="danger"
           :disabled="!selection || selectionLength !== 1"
-          @click="openDialog(null)"
+          @click="checkOutVisible = true"
         >
           <el-icon><Edit /></el-icon>
           办理退宿
@@ -166,7 +175,7 @@
         <el-button
           type="primary"
           :disabled="!selection || selectionLength !== 1"
-          @click="openDialog(null)"
+          @click="keyVisible = true"
         >
           <el-icon><Edit /></el-icon>
           打印退宿证明
@@ -175,7 +184,7 @@
         <el-button
           type="primary"
           :disabled="!selection || selectionLength !== 1"
-          @click="openDialog(null)"
+          @click="keyVisible = true"
         >
           <el-icon><Edit /></el-icon>
           配备钥匙申请
@@ -306,7 +315,11 @@
           <el-input v-model="form.keyFlag" />
         </el-form-item>
         <el-form-item label="入住日期" prop="checkinDate">
-          <el-input type="date" v-model="form.checkinDate" />
+          <el-date-picker
+            v-model="form.checkinDate"
+            type="date"
+            placeholder="选择日期"
+          />
         </el-form-item>
         <el-form-item label="入住押金" prop="deposit">
           <el-input v-model="form.deposit" />
@@ -375,6 +388,10 @@
         <template #header>
           <div class="card-header flex flex-wrap justify-between">
             <span
+              ><span class="font-bold">工号：</span
+              >{{ onlyOneSelection.staffNum }}</span
+            >
+            <span
               ><span class="font-bold">姓名：</span
               >{{ onlyOneSelection.staffName }}</span
             >
@@ -394,9 +411,9 @@
         </template>
         <div class="flex flex-wrap justify-between">
           <el-form
-            :model="exchangeForm"
-            :rules="exchangeRules"
-            ref="exchangeRef"
+            :model="exchangeApplyForm"
+            :rules="exchangeApplyRules"
+            ref="exchangeApplyRef"
             class="flex flex-wrap justify-start"
             label-width="80px"
           >
@@ -466,6 +483,246 @@
         </template>
       </el-card>
     </el-dialog>
+    <!-- 调换申请单 -->
+    <el-dialog v-model="exchangeVisible" title="调换申请" width="600px">
+      <el-card>
+        <template #header>
+          <div class="card-header flex flex-wrap justify-between">
+            <span
+              ><span class="font-bold">工号：</span
+              >{{ onlyOneSelection.staffNum }}</span
+            >
+            <span
+              ><span class="font-bold">姓名：</span
+              >{{ onlyOneSelection.staffName }}</span
+            >
+            <span
+              ><span class="font-bold">部门：</span
+              >{{ onlyOneSelection.dept }}</span
+            >
+            <span
+              ><span class="font-bold">职务：</span
+              >{{ onlyOneSelection.post }}</span
+            >
+            <span
+              ><span class="font-bold">电话：</span
+              >{{ onlyOneSelection.phone }}</span
+            >
+          </div>
+        </template>
+        <div class="flex flex-wrap justify-between">
+          <el-form
+            :model="exchangeApplyForm"
+            :rules="exchangeApplyRules"
+            ref="exchangeApplyRef"
+            class="flex flex-wrap justify-start flex-col"
+            label-width="80px"
+          >
+            <el-form-item label="申请楼栋">
+              <el-select
+                style="width: 200px"
+                v-model="exchangeApplyForm.selectedBuilding"
+              >
+                <el-option
+                  v-for="building in buildings"
+                  :key="building"
+                  :value="building"
+                  :label="building"
+                />
+              </el-select>
+            </el-form-item>
+            <el-form-item label="申请楼层">
+              <el-select
+                style="width: 100px"
+                v-model="exchangeApplyForm.selectedFloor"
+              >
+                <el-option
+                  v-for="floor in floors"
+                  :key="floor"
+                  :value="floor"
+                  :label="floor"
+                />
+              </el-select>
+            </el-form-item>
+            <el-form-item label="申请房间">
+              <el-select
+                style="width: 100px"
+                v-model="exchangeApplyForm.selectedRoom"
+                @change="handleRoomChange"
+              >
+                <el-option
+                  v-for="room in rooms"
+                  :key="room"
+                  :value="room"
+                  :label="room"
+                />
+              </el-select>
+            </el-form-item>
+        <el-form-item label="区域" prop="area" class="flex items-center">
+            <el-checkbox @change="checkedCross= !checkedSame" v-model="checkedSame" label="同区" size="large" />
+            <el-checkbox @change="checkedSame= !checkedCross" v-model="checkedCross" label="跨区" size="large" />
+        </el-form-item>
+          </el-form>
+        </div>
+        <template #footer>
+          <div class="flex justify-end">
+            <el-button type="primary" @click="exchangeApply">申请</el-button>
+            <el-button @click="exchangeVisible = false">取消</el-button>
+          </div>
+        </template>
+      </el-card>
+    </el-dialog>
+    <!-- 办理退宿 -->
+    <el-dialog v-model="checkOutVisible" title="办理退宿" width="600px">
+      <el-card>
+        <template #header>
+          <div class="card-header flex flex-wrap justify-between">
+             <span
+              ><span class="font-bold">工号：</span
+              >{{ onlyOneSelection.staffNum }}</span
+            >
+            <span
+              ><span class="font-bold">姓名：</span
+              >{{ onlyOneSelection.staffName }}</span
+            >
+            <span
+              ><span class="font-bold">性别：</span
+              >{{ onlyOneSelection.sex }}</span
+            >
+            <span
+              ><span class="font-bold">部门：</span
+              >{{ onlyOneSelection.dept }}</span
+            >
+          </div>
+        </template>
+        <div class="flex flex-wrap justify-between">
+          <el-form
+            :model="checkOutForm"
+            :rules="checkOutRules"
+            ref="checkOutRef"
+            class="flex flex-wrap justify-start flex-col"
+            label-width="80px"
+          >
+            <el-form-item label="退宿日期" prop="checkOutDate">
+              <el-date-picker
+                v-model="checkOutForm.checkOutDate"
+                type="date"
+                placeholder="选择日期"
+              />
+            </el-form-item>
+            <el-form-item label="出矿日期" prop="leaveDate">
+              <el-date-picker
+                v-model="checkOutForm.leaveDate"
+                type="date"
+                placeholder="选择日期"
+              />
+            </el-form-item>
+        <el-form-item label="钥匙" prop="keyFlag">
+          <el-select style="width: 100px" v-model="checkOutForm.keyFlag">
+            <el-option value="无" label="无" />
+            <el-option value="未退" label="未退" />
+            <el-option value="退还" label="退还" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="床上用品" prop="beddingFlag">
+          <el-select style="width: 100px" v-model="checkOutForm.beddingFlag">
+            <el-option value="无" label="无" />
+            <el-option value="未退" label="未退" />
+            <el-option value="退还" label="退还" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="枕头" prop="pillowFlag">
+          <el-select style="width: 100px" v-model="checkOutForm.pillowFlag">
+            <el-option value="无" label="无" />
+            <el-option value="未退" label="未退" />
+            <el-option value="退还" label="退还" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="脸盆" prop="basin">
+          <el-select style="width: 100px" v-model="checkOutForm.basin">
+            <el-option value="无" label="无" />
+            <el-option value="未退" label="未退" />
+            <el-option value="退还" label="退还" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="押金" prop="deposit">
+          <el-select style="width: 100px" v-model="checkOutForm.deposit">
+            <el-option value="无" label="无" />
+            <el-option value="未退" label="未退" />
+            <el-option value="退还" label="退还" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="打印类型" prop="printType" class="flex items-center">
+            <el-checkbox @change="checkedOuter = !checkedInner" v-model="checkedInner" label="打印内部人员退宿证明" size="large" />
+            <el-checkbox @change="checkedInner = !checkedOuter" v-model="checkedOuter" label="打印外协人员退宿证明" size="large" />
+        </el-form-item>
+        <el-form-item label="退宿理由" prop="leaveReason">
+          <el-select style="width: 100px" v-model="checkOutForm.leaveReason">
+            <el-option value="辞职" label="辞职" />
+            <el-option value="工程结束" label="工程结束" />
+          </el-select>
+        </el-form-item>
+            <el-form-item label="备注">
+              <el-input v-model="checkOutForm.remark" type="textarea" style="width: 300px" />
+            </el-form-item>
+          </el-form>
+        </div>
+        <template #footer>
+          <div class="flex justify-end">
+            <el-button type="primary" @click="checkOut" :disabled="!checkOutForm.checkOutDate || !checkOutForm.leaveDate">确认退宿</el-button>
+            <el-button @click="checkOutVisible = false">取消</el-button>
+          </div>
+        </template>
+      </el-card>
+    </el-dialog>
+    
+    <!-- 配备钥匙申请 -->
+    <el-dialog v-model="keyVisible" title="配备钥匙申请" width="600px">
+      <el-card>
+        <template #header>
+          <div class="card-header flex flex-wrap justify-between">
+             <span
+              ><span class="font-bold">工号：</span
+              >{{ onlyOneSelection.staffNum }}</span
+            >
+            <span
+              ><span class="font-bold">姓名：</span
+              >{{ onlyOneSelection.staffName }}</span
+            >
+            <span
+              ><span class="font-bold">性别：</span
+              >{{ onlyOneSelection.sex }}</span
+            >
+            <span
+              ><span class="font-bold">部门：</span
+              >{{ onlyOneSelection.dept }}</span
+            >
+          </div>
+        </template>
+        <div class="flex flex-wrap justify-between">
+          <el-form
+            :model="keyForm"
+            :rules="keyRules"
+            ref="keyRef"
+            class="flex flex-wrap justify-start flex-col"
+            label-width="80px"
+          >
+          <el-form-item label="数量">
+              <el-input v-model="keyForm.num" style="width: 200px"  />
+            </el-form-item>
+            <el-form-item label="原因">
+              <el-input v-model="keyForm.reason" type="textarea" style="width: 300px" />
+            </el-form-item>
+          </el-form>
+        </div>
+        <template #footer>
+          <div class="flex justify-end">
+            <el-button type="primary" @click="keyApply">申请</el-button>
+            <el-button @click="keyVisible = false">取消</el-button>
+          </div>
+        </template>
+      </el-card>
+    </el-dialog>
   </div>
 </template>
 
@@ -493,17 +750,24 @@ import {
   getBuildingTreeData,
   getEmployeeListByBuilding,
   getInfoRest,
-  exchangeStaffRoom
+  exchangeStaffRoom,
+  exchangeRoomApply
 } from "@/api/checkin";
+import {checkOutStaff} from "@/api/checkout";
 import { getBuildingRoom, saveBuildingInfo } from "@/api/building";
 
 // Pagination variables
 const currentPage = ref(1);
 const pageSize = ref(8);
 const total = ref(0); // Total count
-const employeeList = ref<any[]>([]); // Current page data
-const restList = ref<any[]>([]); // Current page data
-const roomForm = ref<any>({}); // Current page data
+const employeeList = ref<any[]>([]); 
+const restList = ref<any[]>([]); 
+const roomForm = ref<any>({}); 
+const checkedInner = ref(true)
+const checkedOuter = ref(false)
+const checkedSame = ref(true)
+const checkedCross = ref(false)
+const exchangeVisible = ref(false)
 
 // Delete confirmation dialog state
 const deleteDialogVisible = ref(false);
@@ -511,6 +775,8 @@ const deleteEmployee = ref<any>(null);
 
 const roomDialogVisible = ref(false);
 const roomChangeDialogVisible = ref(false);
+const checkOutVisible = ref(false)
+const keyVisible = ref(false)
 // 存储解析数据
 const parsedData = ref<any[]>([]);
 const refreshQuery = ref("");
@@ -538,17 +804,45 @@ const handlePageChange = async (page: number) => {
     pageNo: currentPage.value,
     pageSize: pageSize.value
   });
-
   employeeList.value = response.list;
   total.value = response.total;
 };
-
+const keyForm = ref({
+  num: "1",
+  reason: ""
+});
+const checkOutForm = ref({
+  staffId:"",
+  roomInfo:"",
+  staffName:"",
+  sex:"",
+  dept:"",
+  checkinDate: "",
+  checkOutDate: "",
+  leaveDate: "",
+  keyFlag: "",
+  beddingFlag: "",
+  pillowFlag: "",
+  basin: "",
+  deposit: "",
+  leaveReason: "",
+  remark: ""
+});
 const exchangeForm = ref({
   selectedBuilding: "",
   selectedFloor: "",
   selectedRoom: "",
   selectedStaff: "",
   changeReason: "",
+  staffName: "",
+  buildingNum: "",
+  floor: "",
+  roomNum: ""
+});
+const exchangeApplyForm = ref({
+  selectedBuilding: "",
+  selectedFloor: "",
+  selectedRoom: "",
   staffName: "",
   buildingNum: "",
   floor: "",
@@ -576,6 +870,9 @@ const form = ref({
   deposit: "",
   remark: ""
 });
+const keyRules = {
+  num: [{ required: true, message: "数量不能为空", trigger: "blur" }],
+};
 const rules = {
   buildingNum: [{ required: true, message: "楼栋不能为空", trigger: "blur" }],
   floor: [{ required: true, message: "楼层不能为空", trigger: "blur" }],
@@ -601,6 +898,15 @@ const exchangeRules = {
   selectedStaff: [
     { required: true, message: "对调人员不能为空", trigger: "blur" }
   ]
+};
+const exchangeApplyRules = {
+  selectedBuilding: [{ required: true, message: "楼栋不能为空", trigger: "blur" }],
+  selectedFloor: [{ required: true, message: "楼层不能为空", trigger: "blur" }],
+  selectedRoom: [{ required: true, message: "房间号不能为空", trigger: "blur" }],
+};
+const checkOutRules = {
+  checkOutDate: [{ required: true, message: "退宿日期不能为空", trigger: "blur" }],
+  leaveDate: [{ required: true, message: "出矿日期不能为空", trigger: "blur" }],
 };
 const exchangeRef = ref();
 // Open dialog
@@ -843,17 +1149,17 @@ const buildings = computed(() => {
 });
 const floors = computed(() => {
   const building = buildingTreeData.value.find(
-    b => b.label === exchangeForm.value.selectedBuilding
+    b => b.label === exchangeForm.value.selectedBuilding||b.label === exchangeApplyForm.value.selectedBuilding
   );
   return building?.children.map(floor => floor.label) || [];
 });
 
 const rooms = computed(() => {
   const building = buildingTreeData.value.find(
-    b => b.label === exchangeForm.value.selectedBuilding
+    b => b.label === exchangeForm.value.selectedBuilding||b.label === exchangeApplyForm.value.selectedBuilding
   );
   const floor = building?.children.find(
-    f => f.label === exchangeForm.value.selectedFloor
+    f => f.label === exchangeForm.value.selectedFloor||f.label === exchangeApplyForm.value.selectedFloor
   );
   return floor?.children.map(room => room.label) || [];
 });
@@ -871,6 +1177,38 @@ const exchangeRoom = async () => {
   employeeList.value = response.list;
   total.value = response.total;
 };
+const exchangeApply = async () => {
+  await exchangeRoomApply(exchangeApplyForm.value);
+  ElMessage.success("申请成功！");
+  exchangeVisible.value = false;
+}
+function formatDate(date) {
+  if (!date) return ""; // 如果没有日期，返回空字符串
+  const d = new Date(date);
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, "0"); // 获取月份并确保两位数
+  const day = String(d.getDate()).padStart(2, "0"); // 获取日期并确保两位数
+  return `${year}-${month}-${day}`; // 返回格式化的日期
+}
+const checkOut = async ()=>{
+  checkOutForm.value.roomInfo = onlyOneSelection.value.buildingNum+onlyOneSelection.value.floor+onlyOneSelection.value.roomNum;
+  checkOutForm.value.staffName = onlyOneSelection.value.staffName;
+  checkOutForm.value.sex = onlyOneSelection.value.sex;
+  checkOutForm.value.dept = onlyOneSelection.value.dept;
+  checkOutForm.value.checkinDate = onlyOneSelection.value.checkinDate;
+  checkOutForm.value.checkOutDate = formatDate(checkOutForm.value.checkOutDate);
+  checkOutForm.value.leaveDate = formatDate(checkOutForm.value.leaveDate);
+  checkOutForm.value.staffId = onlyOneSelection.value.id;
+  await checkOutStaff(checkOutForm.value)
+  const response = await getEmployeeListByBuilding({
+    query: refreshQuery.value,
+    pageNo: currentPage.value,
+    pageSize: pageSize.value
+  });
+  checkOutVisible.value = false
+  employeeList.value = response.list;
+  total.value = response.total;
+}
 
 const selection = ref([]);
 const selectionLength = ref(0);
@@ -884,6 +1222,10 @@ const handleSelectionChange = data => {
     exchangeForm.value.buildingNum = onlyOneSelection.value.buildingNum;
     exchangeForm.value.floor = onlyOneSelection.value.floor;
     exchangeForm.value.roomNum = onlyOneSelection.value.roomNum;
+    exchangeApplyForm.value.staffName = onlyOneSelection.value.staffName;
+    exchangeApplyForm.value.buildingNum = onlyOneSelection.value.buildingNum;
+    exchangeApplyForm.value.floor = onlyOneSelection.value.floor;
+    exchangeApplyForm.value.roomNum = onlyOneSelection.value.roomNum;
   }
 };
 onMounted(() => {

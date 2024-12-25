@@ -27,3 +27,9 @@ export const exchangeStaffRoom = (data: any) => {
     data
   });
 };
+
+export const exchangeRoomApply = (data: any) => {
+  return http.request<Result>("post", baseUrlApi("checkin/exchangeRoomApply"), {
+    data
+  });
+};

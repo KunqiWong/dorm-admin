@@ -8,24 +8,23 @@
         </el-button>
 
         <el-input
-          v-model="searchQuery.operater"
+          v-model="searchQuery.operator"
           placeholder="操作人"
+          clearable
+          style="width: 100px"
+        />
+        <el-input
+          v-model="searchQuery.staffName"
+          placeholder="员工姓名"
+          clearable
+          style="width: 100px"
+        />
+        <el-input
+          v-model="searchQuery.passportNo"
+          placeholder="护照号"
           clearable
           style="width: 200px"
         />
-
-        <el-select
-          v-model="searchQuery.operateType"
-          placeholder="操作类型"
-          clearable
-          style="width: 200px"
-        >
-          <el-option label="添加记录" value="添加记录" />
-          <el-option label="修改记录" value="修改记录" />
-          <el-option label="删除记录" value="删除记录" />
-          <el-option label="退宿记录" value="退宿记录" />
-          <el-option label="调换记录" value="调换记录" />
-        </el-select>
 
         <el-date-picker
           v-model="searchQuery.timeRange"
@@ -38,7 +37,7 @@
           clearable
         />
 
-        <el-button @click="fetchCheckoutList" type="primary">
+        <el-button @click="fetchCheckOutList" type="primary">
           <el-icon><Search /></el-icon>
           搜索
         </el-button>
@@ -47,25 +46,25 @@
       <!-- 表格 -->
       <el-table :data="checkoutList" border style="width: 100%">
         <el-table-column prop="operator" label="登记人" width="100" />
-        <el-table-column prop="room_info" label="房间信息" width="200" />
-        <el-table-column prop="staff_name" label="员工姓名" width="100" />
-        <el-table-column prop="passport_no" label="护照号" width="150" />
+        <el-table-column prop="roomInfo" label="房间信息" width="200" />
+        <el-table-column prop="staffName" label="员工姓名" width="100" />
+        <el-table-column prop="passportNo" label="护照号" width="150" />
         <el-table-column prop="sex" label="性别" width="100" />
         <el-table-column prop="dept" label="部门" width="200" />
         <el-table-column prop="company" label="公司" width="200" />
-        <el-table-column prop="checkin_date" label="入住日期" width="150" />
-        <el-table-column prop="checkout_date" label="退宿日期" width="150" />
-        <el-table-column prop="leave_date" label="出矿日期" width="150" />
-        <el-table-column prop="key_flag" label="钥匙" width="100" />
-        <el-table-column prop="card_flag" label="饭卡" width="100" />
-        <el-table-column prop="bedding_flag" label="床上用品" width="100" />
-        <el-table-column prop="pillow_flag" label="枕头" width="100" />
+        <el-table-column prop="checkinDate" label="入住日期" width="150" />
+        <el-table-column prop="checkoutDate" label="退宿日期" width="150" />
+        <el-table-column prop="leaveDate" label="出矿日期" width="150" />
+        <el-table-column prop="keyFlag" label="钥匙" width="100" />
+        <el-table-column prop="cardFlag" label="饭卡" width="100" />
+        <el-table-column prop="beddingFlag" label="床上用品" width="100" />
+        <el-table-column prop="pillowFlag" label="枕头" width="100" />
         <el-table-column prop="basin" label="脸盆" width="100" />
         <el-table-column prop="deposit" label="押金" width="100" />
-        <el-table-column prop="leave_reason" label="退宿理由" width="200" />
+        <el-table-column prop="leaveReason" label="退宿理由" width="200" />
         <el-table-column prop="remark" label="备注" width="200" />
-        <el-table-column prop="create_by" label="创建人" width="100" />
-        <el-table-column prop="create_time" label="创建时间" width="150" />
+        <el-table-column prop="createBy" label="创建人" width="100" />
+        <el-table-column prop="createTime" label="创建时间" width="150" />
       </el-table>
 
       <el-pagination
@@ -85,7 +84,7 @@
 import { ref, onMounted } from "vue";
 import { ElMessage } from "element-plus";
 import { Search, Download } from "@element-plus/icons-vue";
-import { getCheckoutList, selectLeaveInfoAll } from "@/api/checkout";
+import { getCheckOutList, selectLeaveInfoAll } from "@/api/checkout";
 import * as XLSX from "xlsx-js-style";
 
 // 分页相关变量
@@ -96,8 +95,9 @@ const checkoutList = ref<any[]>([]);
 
 // 搜索条件
 const searchQuery = ref({
-  operater: "",
-  operateType: "",
+  operator: "",
+  staffName: "",
+  passportNo: "",
   timeRange: []
 });
 function formatDate(date) {
@@ -109,16 +109,17 @@ function formatDate(date) {
   return `${year}-${month}-${day}`; // 返回格式化的日期
 }
 // 获取日志列表
-const fetchCheckoutList = async () => {
+const fetchCheckOutList = async () => {
   try {
     const query = {
-      operater: searchQuery.value.operater,
-      operateType: searchQuery.value.operateType,
+      operator: searchQuery.value.operator,
+      staffName: searchQuery.value.staffName,
+      passportNo: searchQuery.value.passportNo,
       startTime: formatDate(searchQuery.value.timeRange[0]) || "",
       endTime: formatDate(searchQuery.value.timeRange[1]) || ""
     };
     console.log(query);
-    const response = await getCheckoutList({
+    const response = await getCheckOutList({
       pageNo: currentPage.value,
       pageSize: pageSize.value,
       ...query
@@ -134,7 +135,7 @@ const fetchCheckoutList = async () => {
 // 分页处理
 const handlePageChange = (page: number) => {
   currentPage.value = page;
-  fetchCheckoutList();
+  fetchCheckOutList();
 };
 
 // 导出日志到 Excel
@@ -229,7 +230,7 @@ const handleExport = async () => {
 };
 
 onMounted(() => {
-  fetchCheckoutList();
+  fetchCheckOutList();
 });
 </script>
 

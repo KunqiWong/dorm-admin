@@ -23,8 +23,8 @@
           <el-option label="添加记录" value="添加记录" />
           <el-option label="修改记录" value="修改记录" />
           <el-option label="删除记录" value="删除记录" />
-          <el-option label="退宿记录" value="退宿记录" />
           <el-option label="调换记录" value="调换记录" />
+          <el-option label="调换申请记录" value="调换申请记录" />
         </el-select>
 
         <el-date-picker
