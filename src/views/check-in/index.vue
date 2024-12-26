@@ -559,8 +559,8 @@
               </el-select>
             </el-form-item>
         <el-form-item label="区域" prop="area" class="flex items-center">
-            <el-checkbox @change="checkedCross= !checkedSame" v-model="checkedSame" label="同区" size="large" />
-            <el-checkbox @change="checkedSame= !checkedCross" v-model="checkedCross" label="跨区" size="large" />
+            <el-checkbox @change="checkedCross= false" v-model="checkedSame" label="同区" size="large" />
+            <el-checkbox @change="checkedSame= false" v-model="checkedCross" label="跨区" size="large" />
         </el-form-item>
           </el-form>
         </div>
@@ -653,8 +653,8 @@
           </el-select>
         </el-form-item>
         <el-form-item label="打印类型" prop="printType" class="flex items-center">
-            <el-checkbox @change="checkedOuter = !checkedInner" v-model="checkedInner" label="打印内部人员退宿证明" size="large" />
-            <el-checkbox @change="checkedInner = !checkedOuter" v-model="checkedOuter" label="打印外协人员退宿证明" size="large" />
+            <el-checkbox @change="checkedOuter = false" v-model="checkedInner" label="打印内部人员退宿证明" size="large" />
+            <el-checkbox @change="checkedInner = false" v-model="checkedOuter" label="打印外协人员退宿证明" size="large" />
         </el-form-item>
         <el-form-item label="退宿理由" prop="leaveReason">
           <el-select style="width: 100px" v-model="checkOutForm.leaveReason">
@@ -1180,7 +1180,7 @@ const exchangeRoom = async () => {
 const exchangeApply = async () => {
   await exchangeRoomApply(exchangeApplyForm.value);
   ElMessage.success("申请成功！");
-  if(checkedInner.value){
+  if(checkedSame.value){
     printApply();
   }else{
     printCrossApply();
@@ -1208,9 +1208,9 @@ const checkOut = async ()=>{
   await checkOutStaff(checkOutForm.value)
   ElMessage.success("退宿成功！");
   if(checkedInner.value){
-    printOutProof();
-  }else{
     printProof();
+  }else{
+    printOutProof();
   }
   const response = await getEmployeeListByBuilding({
     query: refreshQuery.value,
@@ -1248,7 +1248,7 @@ const printProof = () => {
 };
 //打印外协退宿证明
 const printOutProof = () => {
-  const reportPath = "http://localhost:8075/webroot/decision/view/report?viewlet=checkout.cpt&op=view"; // 报表路径
+  const reportPath = "http://localhost:8075/webroot/decision/view/report?op=view&viewlet=checkout_outer.cpt"; // 报表路径
 
   window.open(reportPath+`&staffName=${onlyOneSelection.value.staffName}&roomNum=${onlyOneSelection.value.roomNum}`, "_blank");
 };
@@ -1266,13 +1266,13 @@ const printKey = () => {
 };
 //打印跨区调换申请
 const printCrossApply = () => {
-  const reportPath = "http://localhost:8075/webroot/decision/view/report?viewlet=%25E5%25A4%2596%25E5%258D%2594%25E7%2594%25B3%25E8%25AF%25B7%25E5%258D%2595.cpt"; // 报表路径
-  window.open(reportPath+`&staffName=${onlyOneSelection.value.staffName}&roomNum=${onlyOneSelection.value.roomNum}&keyNum=${keyForm.value.num}&reason=${keyForm.value.reason}`, "_blank");
+  const reportPath = "http://localhost:8075/webroot/decision/view/report?viewlet=%25E8%25B7%25A8%25E5%258C%25BA%25E5%25AE%25BF%25E8%2588%258D%25E8%25B0%2583%25E6%258D%25A2%25E7%2594%25B3%25E8%25AF%25B7%25E5%258D%2595.cpt"; // 报表路径
+  window.open(reportPath+`&staffName=${onlyOneSelection.value.staffName}&staffNum=${onlyOneSelection.value.staffNum}`, "_blank");
 };
 //打印内调申请
 const printApply = () => {
-  const reportPath = "http://localhost:8075/webroot/decision/view/report?viewlet=%25E5%25A4%2596%25E5%258D%2594%25E7%2594%25B3%25E8%25AF%25B7%25E5%258D%2595.cpt"; // 报表路径
-  window.open(reportPath+`&staffName=${onlyOneSelection.value.staffName}&roomNum=${onlyOneSelection.value.roomNum}&keyNum=${keyForm.value.num}&reason=${keyForm.value.reason}`, "_blank");
+  const reportPath = "http://localhost:8075/webroot/decision/view/report?viewlet=%25E5%2590%258C%25E5%258C%25BA%25E5%25AE%25BF%25E8%2588%258D%25E8%25B0%2583%25E6%258D%25A2%25E7%2594%25B3%25E8%25AF%25B7%25E5%258D%2595.cpt"; // 报表路径
+  window.open(reportPath+`&staffName=${onlyOneSelection.value.staffName}&staffNum=${onlyOneSelection.value.staffNum}&roomInfo=${exchangeApplyForm.value.selectedBuilding+exchangeApplyForm.value.selectedFloor+exchangeApplyForm.value.selectedRoom}`, "_blank");
 };
 
 onMounted(() => {
