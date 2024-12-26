@@ -46,15 +46,13 @@
           <template #default="props">
             <el-space m="4" style="margin-left: 50px">
               <span m="t-0 b-2" style="margin-right: 10px">
-                <span style="font-weight: bold">创建时间：</span>2019-12-27
-                08:50:00</span
+                <span style="font-weight: bold">创建时间：</span>{{ props.row.createTime }}</span
               >
               <span m="t-0 b-2" style="margin-right: 10px">
-                <span style="font-weight: bold">更新人：</span>孙博文</span
+                <span style="font-weight: bold">更新人：</span>{{ props.row.updateBy }}</span
               >
               <span m="t-0 b-2" style="margin-right: 10px">
-                <span style="font-weight: bold">更新时间：</span>2020-08-13
-                07:32:49</span
+                <span style="font-weight: bold">更新时间：</span>{{ props.row.updateTime }}</span
               >
             </el-space>
           </template>
@@ -207,6 +205,7 @@ const fetchBuildingList = async () => {
       pageSize: pageSize.value,
       query: searchQuery.value
     });
+    // console.log(response);
     buildingList.value = response.list;
     total.value = response.total;
   } catch (error) {
