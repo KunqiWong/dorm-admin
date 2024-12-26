@@ -7,7 +7,7 @@ import { storageLocal, isObject } from "@pureadmin/utils";
 // element-plus国际化
 import enLocale from "element-plus/es/locale/lang/en";
 import zhLocale from "element-plus/es/locale/lang/zh-cn";
-
+import idLocale from "element-plus/es/locale/lang/id";
 const siphonI18n = (function () {
   // 仅初始化一次国际化配置
   let cache = Object.fromEntries(
@@ -31,6 +31,10 @@ export const localesConfigs = {
   en: {
     ...siphonI18n("en"),
     ...enLocale
+  },
+  id: {
+    ...siphonI18n("id"),
+    ...idLocale
   }
 };
 

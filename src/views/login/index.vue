@@ -37,7 +37,7 @@ const { t } = useI18n();
 const { dataTheme, overallStyle, dataThemeChange } = useDataThemeChange();
 dataThemeChange(overallStyle.value);
 const { title, getDropdownItemStyle, getDropdownItemClass } = useNav();
-const { locale, translationCh, translationEn } = useTranslationLang();
+const { locale, translationCh, translationEn, translationId } = useTranslationLang();
 
 const ruleForm = reactive({
   username: "admin",
@@ -117,6 +117,16 @@ onBeforeUnmount(() => {
                 :icon="Check"
               />
               简体中文
+            </el-dropdown-item>
+            <el-dropdown-item
+              :style="getDropdownItemStyle(locale, 'id')"
+              :class="['dark:!text-white', getDropdownItemClass(locale, 'id')]"
+              @click="translationId"
+            >
+              <span v-show="locale === 'id'" class="check-en">
+                <IconifyIconOffline :icon="Check" />
+              </span>
+              Bahasa Indonesia
             </el-dropdown-item>
             <el-dropdown-item
               :style="getDropdownItemStyle(locale, 'en')"

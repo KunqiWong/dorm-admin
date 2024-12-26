@@ -28,7 +28,7 @@ const {
   getDropdownItemClass
 } = useNav();
 
-const { t, locale, translationCh, translationEn } = useTranslationLang();
+const { t, locale, translationCh, translationEn, translationId } = useTranslationLang();
 </script>
 
 <template>
@@ -68,6 +68,16 @@ const { t, locale, translationCh, translationEn } = useTranslationLang();
                 :icon="Check"
               />
               简体中文
+            </el-dropdown-item>
+            <el-dropdown-item
+              :style="getDropdownItemStyle(locale, 'id')"
+              :class="['dark:!text-white', getDropdownItemClass(locale, 'id')]"
+              @click="translationId"
+            >
+              <span v-show="locale === 'id'" class="check-en">
+                <IconifyIconOffline :icon="Check" />
+              </span>
+              Bahasa Indonesia
             </el-dropdown-item>
             <el-dropdown-item
               :style="getDropdownItemStyle(locale, 'en')"

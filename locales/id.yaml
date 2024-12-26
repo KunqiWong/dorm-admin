@@ -1,0 +1,123 @@
+buttons:
+  pureLoginOut: Keluar
+  pureLogin: Masuk
+  pureOpenSystemSet: Buka Konfigurasi Sistem
+  pureReload: Muat Ulang
+  pureCloseCurrentTab: Tutup Tab Saat Ini
+  pureCloseLeftTabs: Tutup Tab Kiri
+  pureCloseRightTabs: Tutup Tab Kanan
+  pureCloseOtherTabs: Tutup Tab Lain
+  pureCloseAllTabs: Tutup Semua Tab
+  pureContentFullScreen: Layar Penuh Konten
+  pureContentExitFullScreen: Keluar dari Layar Penuh
+  pureClickCollapse: Lipat
+  pureClickExpand: Bentangkan
+  pureConfirm: Konfirmasi
+  pureSwitch: Beralih
+  pureClose: Tutup
+  pureBackTop: Kembali ke Atas
+  pureOpenText: Buka
+  pureCloseText: Tutup
+search:
+  pureTotal: Total
+  pureHistory: Riwayat
+  pureCollect: Koleksi
+  pureDragSort: (Seret untuk Mengurutkan)
+  pureEmpty: Kosong
+  purePlaceholder: Cari Menu
+panel:
+  pureSystemSet: Konfigurasi Sistem
+  pureCloseSystemSet: Tutup Konfigurasi Sistem
+  pureClearCacheAndToLogin: Hapus cache dan kembali ke halaman login
+  pureClearCache: Hapus Cache
+  pureOverallStyle: Gaya Keseluruhan
+  pureOverallStyleLight: Terang
+  pureOverallStyleLightTip: Mulai segar dan ciptakan antarmuka kerja yang nyaman
+  pureOverallStyleDark: Gelap
+  pureOverallStyleDarkTip: Nikmati ketenangan dan keanggunan malam
+  pureOverallStyleSystem: Otomatis
+  pureOverallStyleSystemTip: Sinkronkan waktu dan antarmuka menyesuaikan dengan pagi dan senja
+  pureThemeColor: Warna Tema
+  pureLayoutModel: Model Tata Letak
+  pureVerticalTip: Menu di sebelah kiri yang akrab dan ramah
+  pureHorizontalTip: Menu atas yang ringkas
+  pureMixTip: Menu campuran yang fleksibel
+  pureStretch: Regangkan Halaman
+  pureStretchFixed: Tetap
+  pureStretchFixedTip: Halaman ringkas memudahkan menemukan informasi yang dibutuhkan
+  pureStretchCustom: Kustom
+  pureStretchCustomTip: Minimal 1280 maksimal 1600
+  pureTagsStyle: Gaya Tag
+  pureTagsStyleSmart: Pintar
+  pureTagsStyleSmartTip: Tag pintar menambah kesenangan dan keindahan
+  pureTagsStyleCard: Kartu
+  pureTagsStyleCardTip: Tag kartu untuk penelusuran yang efisien
+  pureTagsStyleChrome: Chrome
+  pureTagsStyleChromeTip: Gaya Chrome yang klasik dan elegan
+  pureInterfaceDisplay: Tampilan Antarmuka
+  pureGreyModel: Model Abu-abu
+  pureWeakModel: Model Lemah
+  pureHiddenTags: Sembunyikan Tag
+  pureHiddenFooter: Sembunyikan Footer
+  pureMultiTagsCache: Cache MultiTag
+menus:
+  pureHome: Beranda
+  pureLogin: Masuk
+  pureAbnormal: Halaman Tidak Normal
+  pureFourZeroFour: "404"
+  pureFourZeroOne: "403"
+  pureFive: "500"
+  purePermission: Manajemen Izin
+  purePermissionPage: Izin Pengguna
+  purePermissionButton: Izin Tombol
+  purePermissionButtonRouter: Rute kembali izin tombol
+  purePermissionButtonLogin: Antarmuka login kembali izin tombol
+  userName: Nama Pengguna
+  status: Status
+status:
+  pureLoad: Memuat...
+  pureMessage: Pesan
+  pureNotify: Notifikasi
+  pureTodo: Tugas
+  pureNoMessage: Tidak Ada Pesan
+  pureNoNotify: Tidak Ada Notifikasi
+  pureNoTodo: Tidak Ada Tugas
+login:
+  pureUsername: Nama Pengguna
+  purePassword: Kata Sandi
+  pureLogin: Masuk
+  pureLoginSuccess: Berhasil Masuk
+  pureLoginFail: Gagal Masuk
+  pureUsernameReg: Silakan masukkan nama pengguna
+  purePassWordReg: Silakan masukkan kata sandi
+  purePassWordRuleReg: Format kata sandi harus kombinasi 8-18 karakter
+permission:
+  username: Nama Pengguna
+  status: Status
+  search: Cari
+  add: Tambah
+  operations: Operasi
+  createTime: Waktu Dibuat
+  resetPassword: Reset Kata Sandi
+  enable: Aktifkan
+  disable: Nonaktifkan
+  addAccount: Tambah Akun
+  password: Kata Sandi
+  confirmPassword: Konfirmasi Kata Sandi
+  usernamePlaceholder: Silakan masukkan nama pengguna
+  passwordPlaceholder: Silakan masukkan kata sandi
+  confirmPasswordPlaceholder: Silakan konfirmasi kata sandi
+  cancel: Batal
+  submit: Kirim
+  sure: Yakin
+sidebar:
+  building: Manajemen Gedung
+  checkIn: Check In
+  checkOut: Catatan Check Out
+  employeeSearch: Manajemen Karyawan
+  operationRecords: Catatan Operasi
+  departmentStatistics: Statistik Departemen
+  occupancyRate: Tingkat Hunian
+  roomSwap: Tukar Kamar
+  buildingEmployeeInfo: Info Karyawan Gedung
+  reports: Laporan
