@@ -1242,36 +1242,36 @@ const handleSelectionChange = data => {
 };
 //打印退宿证明
 const printProof = () => {
-  const reportPath = "http://localhost:8075/webroot/decision/view/report?viewlet=checkout.cpt&op=view"; // 报表路径
+  const reportPath = "http://10.1.11.40/decision/view/report?viewlet=dorm/checkout.cpt&op=view"; // 报表路径
 
   window.open(reportPath+`&staffName=${onlyOneSelection.value.staffName}&roomNum=${onlyOneSelection.value.roomNum}`, "_blank");
 };
 //打印外协退宿证明
 const printOutProof = () => {
-  const reportPath = "http://localhost:8075/webroot/decision/view/report?op=view&viewlet=checkout_outer.cpt"; // 报表路径
+  const reportPath = "http://10.1.11.40/decision/view/report?viewlet=dorm/checkout_outer.cpt"; // 报表路径
 
   window.open(reportPath+`&staffName=${onlyOneSelection.value.staffName}&roomNum=${onlyOneSelection.value.roomNum}`, "_blank");
 };
 //打印门牌
 const printRoom = () => {
-  const reportPath = "http://localhost:8075/webroot/decision/view/report?viewlet=room.cpt&op=view"; // 报表路径
+  const reportPath = "http://10.1.11.40/decision/view/report?viewlet=dorm/%25E9%2597%25A8%25E7%2589%258C.cpt&op=view"; // 报表路径
 
   window.open(reportPath+`&buildingNum=${onlyOneSelection.value.buildingNum}&roomNum=${onlyOneSelection.value.roomNum}`, "_blank");
 };
 //打印钥匙
 const printKey = () => {
-  const reportPath = "http://localhost:8075/webroot/decision/view/report?viewlet=%25E9%2592%25A5%25E5%258C%2599%25E7%2594%25B3%25E8%25AF%25B7%25E5%258D%2595.cpt"; // 报表路径
+  const reportPath = "http://10.1.11.40/decision/view/report?viewlet=dorm/%25E9%2592%25A5%25E5%258C%2599%25E7%2594%25B3%25E8%25AF%25B7%25E5%258D%2595.cpt"; // 报表路径
 
   window.open(reportPath+`&staffName=${onlyOneSelection.value.staffName}&roomNum=${onlyOneSelection.value.roomNum}&keyNum=${keyForm.value.num}&reason=${keyForm.value.reason}`, "_blank");
 };
 //打印跨区调换申请
 const printCrossApply = () => {
-  const reportPath = "http://localhost:8075/webroot/decision/view/report?viewlet=%25E8%25B7%25A8%25E5%258C%25BA%25E5%25AE%25BF%25E8%2588%258D%25E8%25B0%2583%25E6%258D%25A2%25E7%2594%25B3%25E8%25AF%25B7%25E5%258D%2595.cpt"; // 报表路径
+  const reportPath = "http://10.1.11.40/decision/view/report?viewlet=dorm/%25E8%25B7%25A8%25E5%258C%25BA%25E5%25AE%25BF%25E8%2588%258D%25E8%25B0%2583%25E6%258D%25A2%25E7%2594%25B3%25E8%25AF%25B7%25E5%258D%2595.cpt"; // 报表路径
   window.open(reportPath+`&staffName=${onlyOneSelection.value.staffName}&staffNum=${onlyOneSelection.value.staffNum}`, "_blank");
 };
 //打印内调申请
 const printApply = () => {
-  const reportPath = "http://localhost:8075/webroot/decision/view/report?viewlet=%25E5%2590%258C%25E5%258C%25BA%25E5%25AE%25BF%25E8%2588%258D%25E8%25B0%2583%25E6%258D%25A2%25E7%2594%25B3%25E8%25AF%25B7%25E5%258D%2595.cpt"; // 报表路径
+  const reportPath = "http://10.1.11.40/decision/view/report?viewlet=dorm/%25E5%2590%258C%25E5%258C%25BA%25E5%25AE%25BF%25E8%2588%258D%25E8%25B0%2583%25E6%258D%25A2%25E7%2594%25B3%25E8%25AF%25B7%25E5%258D%2595.cpt"; // 报表路径
   window.open(reportPath+`&staffName=${onlyOneSelection.value.staffName}&staffNum=${onlyOneSelection.value.staffNum}&roomInfo=${exchangeApplyForm.value.selectedBuilding+exchangeApplyForm.value.selectedFloor+exchangeApplyForm.value.selectedRoom}`, "_blank");
 };
 

@@ -180,7 +180,10 @@ import {
 } from "@/api/building";
 import * as XLSX from "xlsx-js-style";
 import UploadComponent from "@/components/Upload.vue";
+import { useI18n } from "vue-i18n";
+import { $t, transformI18n } from "@/plugins/i18n";
 
+const { t } = useI18n();
 // Pagination variables
 const currentPage = ref(1);
 const pageSize = ref(10);

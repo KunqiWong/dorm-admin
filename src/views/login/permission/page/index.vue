@@ -2,7 +2,7 @@
   <div class="p-6">
     <!-- 搜索区域 -->
     <div class="mb-6 bg-white pt-4 rounded-lg shadow">
-      <el-form :model="queryParams" label-width="120px">
+      <el-form :model="queryParams" label-width="150px">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <el-form-item :label="transformI18n($t('permission.username'))">
             <el-input
