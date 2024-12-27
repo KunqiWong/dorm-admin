@@ -4,39 +4,43 @@
       <el-space style="margin-bottom: 20px">
         <el-button type="primary" @click="openDialog(null)">
           <el-icon><Plus /></el-icon>
-          新增房间
+          {{ transformI18n($t("building.addRoom")) }}
         </el-button>
 
         <!-- 导出和导入按钮 -->
         <el-button @click="handleExport" type="success">
           <el-icon><Download /></el-icon>
-          导出 Excel
+          {{ transformI18n($t("building.exportExcel")) }}
         </el-button>
         <el-button @click="handleImport" type="primary">
           <el-icon><Upload /></el-icon>
-          导入 Excel
+          {{ transformI18n($t("building.importExcel")) }}
         </el-button>
 
         <el-input
           v-model="searchQuery"
-          placeholder="搜索房间信息"
+          :placeholder="transformI18n($t('building.searchRoom'))"
           @keyup.enter="fetchBuildingList"
           clearable
           style="width: 300px"
         />
-        <el-button @click="fetchBuildingList">
+        <el-button @click="fetchBuildingList" type="primary">
           <el-icon><Search /></el-icon>
-          搜索
+          {{ transformI18n($t("permission.search")) }}
         </el-button>
         <el-dialog
-          title="导入Excel"
+          :title="transformI18n($t('building.importExcel'))"
           v-model="importDialogVisible"
           width="400px"
         >
           <UploadComponent @dataParsed="handleParsedData" />
           <div slot="footer" class="dialog-footer flex justify-end">
-            <el-button type="primary" @click="importExcel">确认</el-button>
-            <el-button @click="importDialogVisible = false">取消</el-button>
+            <el-button type="primary" @click="importExcel">
+              {{ transformI18n($t("permission.sure")) }}
+            </el-button>
+            <el-button @click="importDialogVisible = false">
+              {{ transformI18n($t("permission.cancel")) }}
+            </el-button>
           </div>
         </el-dialog>
       </el-space>
@@ -46,34 +50,34 @@
           <template #default="props">
             <el-space m="4" style="margin-left: 50px">
               <span m="t-0 b-2" style="margin-right: 10px">
-                <span style="font-weight: bold">创建时间：</span>{{ props.row.createTime }}</span
+                <span style="font-weight: bold">{{ transformI18n($t("building.createTime")) }}：</span>{{ props.row.createTime }}</span
               >
               <span m="t-0 b-2" style="margin-right: 10px">
-                <span style="font-weight: bold">更新人：</span>{{ props.row.updateBy }}</span
+                <span style="font-weight: bold">{{ transformI18n($t("building.updateBy")) }}：</span>{{ props.row.updateBy }}</span
               >
               <span m="t-0 b-2" style="margin-right: 10px">
-                <span style="font-weight: bold">更新时间：</span>{{ props.row.updateTime }}</span
+                <span style="font-weight: bold">{{ transformI18n($t("building.updateTime")) }}：</span>{{ props.row.updateTime }}</span
               >
             </el-space>
           </template>
         </el-table-column>
-        <el-table-column prop="buildingNum" label="楼栋" width="200" />
-        <el-table-column prop="floor" label="楼层" width="100" />
-        <el-table-column prop="roomNum" label="房间号" width="100" />
-        <el-table-column prop="capacity" label="可住人数" width="100" />
-        <el-table-column prop="capacityNum" label="已住人数" width="100" />
-        <el-table-column prop="roomStandard" label="房间标准" width="150" />
-        <el-table-column prop="roomType" label="房间属性" width="150" />
-        <el-table-column prop="remark" label="备注" />
-        <el-table-column label="操作" width="200">
+        <el-table-column prop="buildingNum" :label="transformI18n($t('building.buildingNum'))" width="200" />
+        <el-table-column prop="floor" :label="transformI18n($t('building.floor'))" width="100" />
+        <el-table-column prop="roomNum" :label="transformI18n($t('building.roomNum'))" width="100" />
+        <el-table-column prop="capacity" :label="transformI18n($t('building.capacity'))" width="100" />
+        <el-table-column prop="capacityNum" :label="transformI18n($t('building.capacityNum'))" width="100" />
+        <el-table-column prop="roomStandard" :label="transformI18n($t('building.roomStandard'))" width="150" />
+        <el-table-column prop="roomType" :label="transformI18n($t('building.roomType'))" width="150" />
+        <el-table-column prop="remark" :label="transformI18n($t('building.remark'))" />
+        <el-table-column :label="transformI18n($t('building.operation'))" width="200">
           <template #default="{ row }">
             <el-button type="primary" size="small" @click="openDialog(row)">
               <el-icon><Edit /></el-icon>
-              编辑
+              {{ transformI18n($t("building.edit")) }}
             </el-button>
             <el-button type="danger" size="small" @click="confirmDelete(row)">
               <el-icon><Delete /></el-icon>
-              删除
+              {{ transformI18n($t("building.delete")) }}
             </el-button>
           </template>
         </el-table-column>
@@ -92,7 +96,7 @@
     </el-card>
 
     <!-- Confirm Delete Dialog -->
-    <el-dialog title="确认删除" v-model="deleteDialogVisible" width="400px">
+    <el-dialog :title="transformI18n($t('title.confirmDelete'))" v-model="deleteDialogVisible" width="400px">
       <span
         >您确定要删除"{{
           deleteBuilding
@@ -103,17 +107,17 @@
         }}"吗？</span
       >
       <div slot="footer" class="dialog-footer flex justify-end">
-        <el-button type="primary" @click="deleteRaw">确认</el-button>
-        <el-button @click="deleteDialogVisible = false">取消</el-button>
+        <el-button type="primary" @click="deleteRaw">{{ transformI18n($t("permission.sure")) }}</el-button>
+        <el-button @click="deleteDialogVisible = false">{{ transformI18n($t("permission.cancel")) }}</el-button>
       </div>
     </el-dialog>
 
-    <el-dialog v-model="dialogVisible" title="楼栋信息" width="500px">
-      <el-form :model="form" :rules="rules" ref="formRef" label-width="100px">
-        <el-form-item label="楼栋" prop="buildingNum">
+    <el-dialog v-model="dialogVisible" :title="transformI18n($t('title.buildingInfo'))" width="500px">
+      <el-form :model="form" :rules="rules" ref="formRef" label-width="120px">
+        <el-form-item :label="transformI18n($t('building.buildingNum'))" prop="buildingNum">
           <el-input v-model="form.buildingNum" />
         </el-form-item>
-        <el-form-item label="楼层" prop="floor">
+        <el-form-item :label="transformI18n($t('building.floor'))" prop="floor">
           <el-select v-model="form.floor">
             <el-option value="1楼" label="1楼" />
             <el-option value="2楼" label="2楼" />
@@ -122,19 +126,19 @@
             <el-option value="5楼" label="5楼" />
           </el-select>
         </el-form-item>
-        <el-form-item label="房间号" prop="roomNum">
+        <el-form-item :label="transformI18n($t('building.roomNum'))" prop="roomNum">
           <el-input v-model="form.roomNum" />
         </el-form-item>
-        <el-form-item label="可住人数" prop="capacity">
+        <el-form-item :label="transformI18n($t('building.capacity'))" prop="capacity">
           <el-input v-model="form.capacity" type="number" />
         </el-form-item>
-        <el-form-item label="已住人数" prop="capacityNum">
+        <el-form-item :label="transformI18n($t('building.capacityNum'))" prop="capacityNum">
           <el-input v-model="form.capacityNum" type="number" />
         </el-form-item>
-        <el-form-item label="房间标准" prop="roomStandard">
+        <el-form-item :label="transformI18n($t('building.roomStandard'))" prop="roomStandard">
           <el-input v-model="form.roomStandard" />
         </el-form-item>
-        <el-form-item label="房间属性" prop="roomType">
+        <el-form-item :label="transformI18n($t('building.roomType'))" prop="roomType">
           <el-select v-model="form.roomType">
             <el-option value="普通级" label="普通级" />
             <el-option value="班长级" label="班长级" />
@@ -146,13 +150,13 @@
             <el-option value="客房" label="客房" />
           </el-select>
         </el-form-item>
-        <el-form-item label="备注" prop="remark">
+        <el-form-item :label="transformI18n($t('building.remark'))" prop="remark">
           <el-input v-model="form.remark" />
         </el-form-item>
       </el-form>
       <template #footer>
-        <el-button type="primary" @click="saveBuilding">保存</el-button>
-        <el-button @click="dialogVisible = false">取消</el-button>
+        <el-button type="primary" @click="saveBuilding">{{ transformI18n($t("permission.submit")) }}</el-button>
+        <el-button @click="dialogVisible = false">{{ transformI18n($t("permission.cancel")) }}</el-button>
       </template>
     </el-dialog>
   </div>

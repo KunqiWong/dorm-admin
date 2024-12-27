@@ -4,19 +4,19 @@
       <el-space style="margin-bottom: 20px">
         <el-button @click="handleExport" type="success">
           <el-icon><Download /></el-icon>
-          导出 Excel
+          {{ transformI18n($t('building.exportExcel')) }}
         </el-button>
 
         <el-input
           v-model="searchQuery.operater"
-          placeholder="操作人"
+          :placeholder="transformI18n($t('checkOut.operator'))"
           clearable
           style="width: 200px"
         />
 
         <el-select
           v-model="searchQuery.operateType"
-          placeholder="操作类型"
+          :placeholder="transformI18n($t('checkOut.operateType'))"
           clearable
           style="width: 200px"
         >
@@ -31,8 +31,8 @@
           v-model="searchQuery.timeRange"
           type="daterange"
           range-separator="至"
-          start-placeholder="开始日期"
-          end-placeholder="结束日期"
+          :start-placeholder="transformI18n($t('checkOut.startTime'))"
+          :end-placeholder="transformI18n($t('checkOut.endTime'))"
           format="YYYY-MM-DD"
           style="width: 300px"
           clearable
@@ -40,15 +40,15 @@
 
         <el-button @click="fetchLogList" type="primary">
           <el-icon><Search /></el-icon>
-          搜索
+          {{ transformI18n($t('permission.search')) }}
         </el-button>
       </el-space>
 
       <el-table :data="logList" border style="width: 100%">
-        <el-table-column prop="operater" label="操作人" width="150" />
-        <el-table-column prop="operateType" label="操作类型" width="200" />
-        <el-table-column prop="createTime" label="操作时间" width="200" />
-        <el-table-column prop="remark" label="记录" />
+        <el-table-column prop="operater" :label="transformI18n($t('checkOut.operator'))" width="150" />
+        <el-table-column prop="operateType" :label="transformI18n($t('checkOut.operateType'))" width="200" />
+        <el-table-column prop="createTime" :label="transformI18n($t('building.createTime'))" width="200" />
+        <el-table-column prop="remark" :label="transformI18n($t('checkIn.remark'))" />
       </el-table>
 
       <el-pagination
@@ -70,6 +70,10 @@ import { ElMessage } from "element-plus";
 import { Search, Download } from "@element-plus/icons-vue";
 import { getOperationList, getOperationAll } from "@/api/operation";
 import * as XLSX from "xlsx-js-style";
+import { transformI18n,$t } from "@/plugins/i18n";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
 
 // 分页相关变量
 const currentPage = ref(1);

@@ -121,3 +121,90 @@ sidebar:
   roomSwap: Tukar Kamar
   buildingEmployeeInfo: Info Karyawan Gedung
   reports: Laporan
+building:
+  addRoom: Tambah Kamar
+  exportExcel: Ekspor Excel
+  importExcel: Impor Excel
+  searchRoom: Cari Kamar
+  createTime: Waktu Dibuat
+  updateBy: Update By
+  updateTime: Waktu Update
+  delete: Hapus
+  edit: Edit
+  buildingNum: Gedung
+  floor: Lantai
+  roomNum: Nomor Kamar
+  capacity: Kapasitas
+  capacityNum: Kapasitas
+  roomStandard: Standar Kamar
+  roomType: Tipe Kamar
+  remark: Catatan
+  operation: Operasi
+title:
+  confirmDelete: Konfirmasi Hapus
+  buildingInfo: Informasi Gedung
+  employeeInfo: Informasi Karyawan
+  roomInfo: Informasi Kamar
+  roomChange: Tukar Kamar
+  roomChangeApply: Permintaan Tukar Kamar
+  checkOut: Check Out 
+  printKey: Permintaan Key
+checkIn:
+  inputRoomNum: Silakan masukkan nomor kamar
+  lifeArea: Area Hidup
+  totalCapacity: Kapasitas
+  totalOccupied: Kapasitas
+  occupancyRate: Tingkat Hunian
+  occupancyRateTip: Tingkat Hunian
+  addEmployee: Tambah Karyawan
+  editRoomInfo: Edit Informasi Kamar
+  roomChange: Tukar Kamar
+  printRoomChange: Permintaan Tukar Kamar
+  checkOut: Check Out
+  printCheckOut: Cetak Check Out
+  printKey: Cetak Permintaan Key
+  printDoorplate: Cetak Doorplate
+  staffNum: Karyawan
+  staffName: Nama
+  sex: Jenis Kelamin
+  country: Negara
+  company: Perusahaan
+  dept: Departemen
+  post: Jabatan
+  phone: Telepon
+  visaType: Jenis Visa
+  passportNo: Nomor Paspor
+  bedNum: Nomor Kamar
+  keyFlag: Key
+  checkinDate: Tanggal Check In
+  remark: Catatan
+  reason: Alasan
+  exchangeRoom: Tukar
+  applyBuilding: Gedung
+  applyFloor: Lantai
+  applyRoom: Nomor Kamar
+  area: Area
+  sameArea: Sama
+  crossArea: Cross
+  apply: Permintaan
+  checkOutDate: Tanggal Check Out
+  leaveDate: Tanggal Keluar
+  beddingFlag: Bed
+  pillowFlag: Pillow
+  basin: Basin
+  deposit: Deposit
+  printType: Tipe Cetak
+  leaveReason: Alasan Keluar
+  printInner: Cetak Internal Keluar
+  printOuter: Cetak Eksternal Keluar
+  num: Jumlah
+checkOut:
+  operator: Operator
+  startTime: Waktu Mulai
+  endTime: Waktu Selesai
+  createBy: Dibuat Oleh
+  cardFlag: Kartu Makan
+  operateType: Tipe Operasi
+employeeSearch:
+  addEmployee: Tambah Karyawan
+  searchEmployee: Cari Karyawan

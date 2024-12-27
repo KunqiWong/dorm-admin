@@ -12,7 +12,7 @@
     >
       <el-input
         v-model="filterText"
-        placeholder="请输入房间号"
+        :placeholder="transformI18n($t('checkIn.inputRoomNum'))"
         style="width: 180px"
         :prefix-icon="Search"
       />
@@ -32,97 +32,97 @@
         <!-- 区域信息 -->
         <div class="p-4 bg-gray-100 rounded-lg shadow-md">
           <div class="text-lg font-semibold text-gray-700">
-            生活区: {{ restList.length > 0 ? restList[0].lifeArea : "" }}
+            {{ transformI18n($t('checkIn.lifeArea')) }}: {{ restList.length > 0 ? restList[0].lifeArea : "" }}
           </div>
           <div class="text-gray-600">
-            可住人数:
+            {{ transformI18n($t('checkIn.totalCapacity')) }}:
             {{ restList.length > 0 ? parseInt(restList[0].totalCapacity) : 0 }}
           </div>
           <div class="text-gray-600">
-            已住人数:
+            {{ transformI18n($t('checkIn.totalOccupied')) }}:
             {{ restList.length > 0 ? parseInt(restList[0].totalOccupied) : 0 }}
           </div>
           <div class="text-gray-600 text-red-500">
-            剩余空位:
+            {{ transformI18n($t('checkIn.occupancyRate')) }}:
             {{ restList.length > 0 ? parseInt(restList[0].occupancyRate) : "" }}
           </div>
           <div class="text-gray-600">
-            入住率: {{ restList.length > 0 ? restList[0].occupancyRate : "" }}%
+            {{ transformI18n($t('checkIn.occupancyRateTip')) }}: {{ restList.length > 0 ? restList[0].occupancyRate : "" }}%
           </div>
         </div>
         <!-- 楼栋信息 -->
         <div class="p-4 bg-gray-100 rounded-lg shadow-md">
           <div class="text-lg font-semibold text-gray-700">
-            楼栋信息: {{ restList.length > 1 ? restList[1].building : "" }}
+            {{ transformI18n($t('building.buildingNum')) }}: {{ restList.length > 1 ? restList[1].building : "" }}
           </div>
           <div class="text-gray-600">
-            可住人数:
+            {{ transformI18n($t('building.capacity')) }}:
             {{ restList.length > 1 ? parseInt(restList[1].totalCapacity) : 0 }}
           </div>
           <div class="text-gray-600">
-            已住人数:
+            {{ transformI18n($t('building.capacityNum')) }}:
             {{ restList.length > 1 ? parseInt(restList[1].totalOccupied) : 0 }}
           </div>
           <div class="text-gray-600 text-red-500">
-            剩余空位:
+            {{ transformI18n($t('checkIn.occupancyRate')) }}:
             {{ restList.length > 1 ? parseInt(restList[1].totalVacancy) : 0 }}
           </div>
           <div class="text-gray-600">
-            入住率: {{ restList.length > 1 ? restList[1].occupancyRate : "" }}%
+            {{ transformI18n($t('checkIn.occupancyRateTip')) }}: {{ restList.length > 1 ? restList[1].occupancyRate : "" }}%
           </div>
         </div>
         <!-- 楼层信息 -->
         <div class="p-4 bg-gray-100 rounded-lg shadow-md">
           <div class="text-lg font-semibold text-gray-700">
-            楼层信息: {{ restList.length > 2 ? restList[2].floorInfo : "" }}
+            {{ transformI18n($t('building.floor')) }}: {{ restList.length > 2 ? restList[2].floorInfo : "" }}
           </div>
           <div class="text-gray-600">
-            可住人数:
+            {{ transformI18n($t('building.capacity')) }}:
             {{ restList.length > 2 ? parseInt(restList[2].totalCapacity) : 0 }}
           </div>
           <div class="text-gray-600">
-            已住人数:
+            {{ transformI18n($t('building.capacityNum')) }}:
             {{ restList.length > 2 ? parseInt(restList[2].totalOccupied) : 0 }}
           </div>
           <div class="text-gray-600 text-red-500">
-            剩余空位:
+            {{ transformI18n($t('checkIn.occupancyRate')) }}:
             {{ restList.length > 2 ? parseInt(restList[2].totalVacancy) : 0 }}
           </div>
           <div class="text-gray-600">
-            入住率: {{ restList.length > 2 ? restList[2].occupancyRate : "" }}%
+            {{ transformI18n($t('checkIn.occupancyRateTip')) }}: {{ restList.length > 2 ? restList[2].occupancyRate : "" }}%
           </div>
         </div>
         <!-- 房间信息 -->
         <div class="p-4 bg-gray-100 rounded-lg shadow-md">
           <div class="flex">
             <div class="text-lg font-semibold text-gray-700 mr-4">
-              房间信息: {{ restList.length > 3 ? restList[3].room : "" }}
+              {{ transformI18n($t('building.roomNum')) }}: {{ restList.length > 3 ? restList[3].room : "" }}
             </div>
             <div class="text-lg font-semibold text-gray-700">
-              房间属性: {{ roomForm.roomType }}
+              {{ transformI18n($t('building.roomType')) }}: {{ roomForm.roomType }}
             </div>
           </div>
           <div class="text-gray-600">
-            可住人数:
+            {{ transformI18n($t('building.capacity')) }}:
             {{ restList.length > 3 ? parseInt(restList[3].totalCapacity) : 0 }}
           </div>
           <div class="text-gray-600">
-            已住人数:
+            {{ transformI18n($t('building.capacityNum')) }}:
             {{ restList.length > 3 ? parseInt(restList[3].totalOccupied) : 0 }}
           </div>
           <div class="text-gray-600 text-red-500">
-            剩余空位:
+            {{ transformI18n($t('checkIn.occupancyRate')) }}:
             {{ restList.length > 3 ? parseInt(restList[3].totalVacancy) : 0 }}
           </div>
           <div class="text-gray-600">
-            入住率: {{ restList.length > 3 ? restList[3].occupancyRate : "" }}%
+            {{ transformI18n($t('checkIn.occupancyRateTip')) }}: {{ restList.length > 3 ? restList[3].occupancyRate : "" }}%
           </div>
         </div>
       </div>
       <el-space class="mt-4 mb-4">
         <el-button type="primary" @click="openDialog(roomDetail)">
           <el-icon><Plus /></el-icon>
-          新增员工
+          {{ transformI18n($t('checkIn.addEmployee')) }}
         </el-button>
 
         <!-- <el-button type="success" @click="openDialog(onlyOneSelection)"  :disabled="!selection || selectionLength !== 1">
@@ -137,7 +137,7 @@
 
         <el-button type="warning" @click="openRoomDialog(roomForm)">
           <el-icon><Edit /></el-icon>
-          修改房间信息
+          {{ transformI18n($t('checkIn.editRoomInfo')) }}
         </el-button>
 
         <el-button
@@ -146,7 +146,7 @@
           @click="openRoomChangeDialog()"
         >
           <el-icon><Edit /></el-icon>
-          调换房间
+          {{ transformI18n($t('checkIn.roomChange')) }}
         </el-button>
 
         <el-button
@@ -155,7 +155,7 @@
           @click="exchangeVisible = true"
         >
           <el-icon><Edit /></el-icon>
-          打印调换申请单
+          {{ transformI18n($t('checkIn.printRoomChange')) }}
         </el-button>
 
         <el-button
@@ -164,12 +164,12 @@
           @click="checkOutVisible = true"
         >
           <el-icon><Edit /></el-icon>
-          办理退宿
+          {{ transformI18n($t('checkIn.checkOut')) }}
         </el-button>
 
         <el-button type="primary" @click="printRoom">
           <el-icon><Edit /></el-icon>
-          打印门牌
+          {{ transformI18n($t('checkIn.printDoorplate')) }}
         </el-button>
 
         <el-button
@@ -178,7 +178,7 @@
           @click="printProof"
         >
           <el-icon><Edit /></el-icon>
-          打印退宿证明
+          {{ transformI18n($t('checkIn.printCheckOut')) }}
         </el-button>
 
         <el-button
@@ -187,7 +187,7 @@
           @click="keyVisible = true"
         >
           <el-icon><Edit /></el-icon>
-          配备钥匙申请
+          {{ transformI18n($t('checkIn.printKey')) }}
         </el-button>
       </el-space>
 
@@ -198,37 +198,37 @@
         @selection-change="handleSelectionChange"
       >
         <el-table-column type="selection" width="55" />
-        <el-table-column label="操作" width="160">
+        <el-table-column :label="transformI18n($t('building.operation'))" width="180">
           <template #default="{ row }">
             <el-button type="primary" size="small" @click="openDialog(row)">
               <el-icon><Edit /></el-icon>
-              编辑
+              {{ transformI18n($t('building.edit')) }}
             </el-button>
             <el-button type="danger" size="small" @click="confirmDelete(row)">
               <el-icon><Delete /></el-icon>
-              删除
+              {{ transformI18n($t('building.delete')) }}
             </el-button>
           </template>
         </el-table-column>
-        <el-table-column prop="buildingNum" label="楼栋" width="150" />
-        <el-table-column prop="floor" label="楼层" width="100" />
-        <el-table-column prop="roomNum" label="房间号" width="100" />
-        <el-table-column prop="roomStandard" label="房间标准" width="100" />
-        <el-table-column prop="staffNum" label="工号" width="120" />
-        <el-table-column prop="staffName" label="姓名" width="100" />
-        <el-table-column prop="sex" label="性别" width="100" />
-        <el-table-column prop="contry" label="国籍" width="100" />
-        <el-table-column prop="company" label="公司" width="200" />
-        <el-table-column prop="dept" label="部门" width="150" />
-        <el-table-column prop="post" label="职务" width="100" />
-        <el-table-column prop="phone" label="电话" width="100" />
-        <el-table-column prop="visaType" label="签证类型" width="100" />
-        <el-table-column prop="passportNo" label="护照号" width="120" />
-        <el-table-column prop="bedNum" label="床位" width="100" />
-        <el-table-column prop="keyFlag" label="钥匙" width="100" />
-        <el-table-column prop="checkinDate" label="入住时间" width="100" />
-        <el-table-column prop="deposit" label="入住押金" width="100" />
-        <el-table-column prop="remark" label="备注" width="300" />
+        <el-table-column prop="buildingNum" :label="transformI18n($t('building.buildingNum'))" width="150" />
+        <el-table-column prop="floor" :label="transformI18n($t('building.floor'))" width="100" />
+        <el-table-column prop="roomNum" :label="transformI18n($t('building.roomNum'))" width="100" />
+        <el-table-column prop="roomStandard" :label="transformI18n($t('building.roomStandard'))" width="100" />
+        <el-table-column prop="staffNum" :label="transformI18n($t('checkIn.staffNum'))" width="120" />
+        <el-table-column prop="staffName" :label="transformI18n($t('checkIn.staffName'))" width="100" />
+        <el-table-column prop="sex" :label="transformI18n($t('checkIn.sex'))" width="100" />
+        <el-table-column prop="contry" :label="transformI18n($t('checkIn.country'))" width="100" />
+        <el-table-column prop="company" :label="transformI18n($t('checkIn.company'))" width="200" />
+        <el-table-column prop="dept" :label="transformI18n($t('checkIn.dept'))" width="150" />
+        <el-table-column prop="post" :label="transformI18n($t('checkIn.post'))" width="100" />
+        <el-table-column prop="phone" :label="transformI18n($t('checkIn.phone'))" width="100" />
+        <el-table-column prop="visaType" :label="transformI18n($t('checkIn.visaType'))" width="100" />
+        <el-table-column prop="passportNo" :label="transformI18n($t('checkIn.passportNo'))" width="120" />
+        <el-table-column prop="bedNum" :label="transformI18n($t('checkIn.bedNum'))" width="100" />
+        <el-table-column prop="keyFlag" :label="transformI18n($t('checkIn.keyFlag'))" width="100" />
+        <el-table-column prop="checkinDate" :label="transformI18n($t('checkIn.checkinDate'))" width="100" />
+        <el-table-column prop="deposit" :label="transformI18n($t('checkIn.deposit'))" width="100" />
+        <el-table-column prop="remark" :label="transformI18n($t('checkIn.remark'))" width="300" />
       </el-table>
 
       <!-- Pagination -->
@@ -244,7 +244,7 @@
     </el-card>
 
     <!-- Confirm Delete Dialog -->
-    <el-dialog title="确认删除" v-model="deleteDialogVisible" width="400px">
+    <el-dialog :title="transformI18n($t('title.confirmDelete'))" v-model="deleteDialogVisible" width="400px">
       <span
         >您确定要删除"{{
           deleteEmployee
@@ -253,97 +253,97 @@
         }}"吗？</span
       >
       <div slot="footer" class="dialog-footer flex justify-end">
-        <el-button type="primary" @click="deleteRaw">确认</el-button>
-        <el-button @click="deleteDialogVisible = false">取消</el-button>
+        <el-button type="primary" @click="deleteRaw">{{ transformI18n($t('permission.sure')) }}</el-button>
+        <el-button @click="deleteDialogVisible = false">{{ transformI18n($t('permission.cancel')) }}</el-button>
       </div>
     </el-dialog>
 
-    <el-dialog v-model="dialogVisible" title="员工信息" width="800px">
+    <el-dialog v-model="dialogVisible" :title="transformI18n($t('title.employeeInfo'))" width="800px">
       <el-form
         :model="form"
         :rules="rules"
         ref="formRef"
-        label-width="100px"
+        label-width="150px"
         class="flex flex-wrap"
       >
-        <el-form-item label="楼栋" prop="buildingNum">
+        <el-form-item :label="transformI18n($t('building.buildingNum'))" prop="buildingNum">
           <el-input v-model="form.buildingNum" />
         </el-form-item>
-        <el-form-item label="楼层" prop="floor">
+        <el-form-item :label="transformI18n($t('building.floor'))" prop="floor">
           <el-input v-model="form.floor" />
         </el-form-item>
-        <el-form-item label="房间号" prop="roomNum">
+        <el-form-item :label="transformI18n($t('building.roomNum'))" prop="roomNum">
           <el-input v-model="form.roomNum" />
         </el-form-item>
-        <el-form-item label="房间类型" prop="roomStandard">
+        <el-form-item :label="transformI18n($t('building.roomStandard'))" prop="roomStandard">
           <el-input v-model="form.roomStandard" />
         </el-form-item>
-        <el-form-item label="工号" prop="staffNum">
+        <el-form-item :label="transformI18n($t('checkIn.staffNum'))" prop="staffNum">
           <el-input v-model="form.staffNum" />
         </el-form-item>
-        <el-form-item label="姓名" prop="staffName">
+        <el-form-item :label="transformI18n($t('checkIn.staffName'))" prop="staffName">
           <el-input v-model="form.staffName" />
         </el-form-item>
-        <el-form-item label="性别" prop="sex">
+        <el-form-item :label="transformI18n($t('checkIn.sex'))" prop="sex">
           <el-input v-model="form.sex" />
         </el-form-item>
-        <el-form-item label="国籍" prop="contry">
+        <el-form-item :label="transformI18n($t('checkIn.country'))" prop="contry">
           <el-input v-model="form.contry" />
         </el-form-item>
-        <el-form-item label="公司" prop="company">
+        <el-form-item :label="transformI18n($t('checkIn.company'))" prop="company">
           <el-input v-model="form.company" />
         </el-form-item>
-        <el-form-item label="部门" prop="dept">
+        <el-form-item :label="transformI18n($t('checkIn.dept'))" prop="dept">
           <el-input v-model="form.dept" />
         </el-form-item>
-        <el-form-item label="职务" prop="post">
+        <el-form-item :label="transformI18n($t('checkIn.post'))" prop="post">
           <el-input v-model="form.post" />
         </el-form-item>
-        <el-form-item label="电话" prop="phone">
+        <el-form-item :label="transformI18n($t('checkIn.phone'))" prop="phone">
           <el-input v-model="form.phone" />
         </el-form-item>
-        <el-form-item label="签证类型" prop="visaType">
+        <el-form-item :label="transformI18n($t('checkIn.visaType'))" prop="visaType">
           <el-input v-model="form.visaType" />
         </el-form-item>
-        <el-form-item label="护照号" prop="passportNo">
+        <el-form-item :label="transformI18n($t('checkIn.passportNo'))" prop="passportNo">
           <el-input v-model="form.passportNo" />
         </el-form-item>
-        <el-form-item label="床位" prop="bedNum">
+        <el-form-item :label="transformI18n($t('checkIn.bedNum'))" prop="bedNum">
           <el-input v-model="form.bedNum" />
         </el-form-item>
-        <el-form-item label="钥匙" prop="keyFlag">
+        <el-form-item :label="transformI18n($t('checkIn.keyFlag'))" prop="keyFlag">
           <el-input v-model="form.keyFlag" />
         </el-form-item>
-        <el-form-item label="入住日期" prop="checkinDate">
+        <el-form-item :label="transformI18n($t('checkIn.checkinDate'))" prop="checkinDate">
           <el-date-picker
             v-model="form.checkinDate"
             type="date"
             placeholder="选择日期"
           />
         </el-form-item>
-        <el-form-item label="入住押金" prop="deposit">
+        <el-form-item :label="transformI18n($t('checkIn.deposit'))" prop="deposit">
           <el-input v-model="form.deposit" />
         </el-form-item>
-        <el-form-item label="备注" prop="remark">
+        <el-form-item :label="transformI18n($t('checkIn.remark'))" prop="remark">
           <el-input v-model="form.remark" />
         </el-form-item>
       </el-form>
       <template #footer>
-        <el-button type="primary" @click="saveEmployee">保存</el-button>
-        <el-button @click="dialogVisible = false">取消</el-button>
+        <el-button type="primary" @click="saveEmployee">{{ transformI18n($t('permission.submit')) }}</el-button>
+        <el-button @click="dialogVisible = false">{{ transformI18n($t('permission.cancel')) }}</el-button>
       </template>
     </el-dialog>
-    <el-dialog v-model="roomDialogVisible" title="房间信息" width="500px">
+    <el-dialog v-model="roomDialogVisible" :title="transformI18n($t('title.roomInfo'))" width="500px">
       <el-form
         :model="roomForm"
         :rules="roomRules"
         ref="roomFormRef"
-        label-width="100px"
+        label-width="150px"
       >
-        <el-form-item label="楼栋" prop="buildingNum">
+        <el-form-item :label="transformI18n($t('building.buildingNum'))" prop="buildingNum">
           <el-input v-model="roomForm.buildingNum" />
         </el-form-item>
-        <el-form-item label="楼层" prop="floor">
+        <el-form-item :label="transformI18n($t('building.floor'))" prop="floor">
           <el-select v-model="roomForm.floor">
             <el-option value="1楼" label="1楼" />
             <el-option value="2楼" label="2楼" />
@@ -352,16 +352,16 @@
             <el-option value="5楼" label="5楼" />
           </el-select>
         </el-form-item>
-        <el-form-item label="房间号" prop="roomNum">
+        <el-form-item :label="transformI18n($t('building.roomNum'))" prop="roomNum">
           <el-input v-model="roomForm.roomNum" />
         </el-form-item>
-        <el-form-item label="可住人数" prop="capacity">
+        <el-form-item :label="transformI18n($t('building.capacity'))" prop="capacity">
           <el-input v-model="roomForm.capacity" type="number" />
         </el-form-item>
-        <el-form-item label="房间标准" prop="roomStandard">
+        <el-form-item :label="transformI18n($t('building.roomStandard'))" prop="roomStandard">
           <el-input v-model="roomForm.roomStandard" />
         </el-form-item>
-        <el-form-item label="房间属性" prop="roomType">
+        <el-form-item :label="transformI18n($t('building.roomType'))" prop="roomType">
           <el-select v-model="roomForm.roomType">
             <el-option value="普通级" label="普通级" />
             <el-option value="班长级" label="班长级" />
@@ -373,38 +373,38 @@
             <el-option value="客房" label="客房" />
           </el-select>
         </el-form-item>
-        <el-form-item label="备注" prop="remark">
+        <el-form-item :label="transformI18n($t('checkIn.remark'))" prop="remark">
           <el-input v-model="roomForm.remark" />
         </el-form-item>
       </el-form>
       <template #footer>
-        <el-button type="primary" @click="saveRoom">保存</el-button>
-        <el-button @click="roomDialogVisible = false">取消</el-button>
+        <el-button type="primary" @click="saveRoom">{{ transformI18n($t('permission.submit')) }}</el-button>
+        <el-button @click="roomDialogVisible = false">{{ transformI18n($t('permission.cancel')) }}</el-button>
       </template>
     </el-dialog>
     <!-- 房间调换 -->
-    <el-dialog v-model="roomChangeDialogVisible" title="房间调换" width="600px">
+    <el-dialog v-model="roomChangeDialogVisible" :title="transformI18n($t('checkIn.roomChange'))" width="600px">
       <el-card>
         <template #header>
           <div class="card-header flex flex-wrap justify-between">
             <span
-              ><span class="font-bold">工号：</span
+              ><span class="font-bold">{{ transformI18n($t('checkIn.staffNum')) }}：</span
               >{{ onlyOneSelection.staffNum }}</span
             >
             <span
-              ><span class="font-bold">姓名：</span
+              ><span class="font-bold">{{ transformI18n($t('checkIn.staffName')) }}：</span
               >{{ onlyOneSelection.staffName }}</span
             >
             <span
-              ><span class="font-bold">部门：</span
+              ><span class="font-bold">{{ transformI18n($t('checkIn.dept')) }}：</span
               >{{ onlyOneSelection.dept }}</span
             >
             <span
-              ><span class="font-bold">职务：</span
+              ><span class="font-bold">{{ transformI18n($t('checkIn.post')) }}：</span
               >{{ onlyOneSelection.post }}</span
             >
             <span
-              ><span class="font-bold">电话：</span
+              ><span class="font-bold">{{ transformI18n($t('checkIn.phone')) }}：</span
               >{{ onlyOneSelection.phone }}</span
             >
           </div>
@@ -415,9 +415,9 @@
             :rules="exchangeApplyRules"
             ref="exchangeApplyRef"
             class="flex flex-wrap justify-start"
-            label-width="80px"
+            label-width="150px"
           >
-            <el-form-item label="楼栋">
+            <el-form-item :label="transformI18n($t('building.buildingNum'))">
               <el-select
                 style="width: 200px"
                 v-model="exchangeForm.selectedBuilding"
@@ -430,7 +430,7 @@
                 />
               </el-select>
             </el-form-item>
-            <el-form-item label="楼层">
+            <el-form-item :label="transformI18n($t('building.floor'))">
               <el-select
                 style="width: 100px"
                 v-model="exchangeForm.selectedFloor"
@@ -443,7 +443,7 @@
                 />
               </el-select>
             </el-form-item>
-            <el-form-item label="房间号">
+            <el-form-item :label="transformI18n($t('building.roomNum'))">
               <el-select
                 style="width: 100px"
                 v-model="exchangeForm.selectedRoom"
@@ -457,7 +457,7 @@
                 />
               </el-select>
             </el-form-item>
-            <el-form-item label="对调人员">
+            <el-form-item :label="transformI18n($t('checkIn.staffName'))">
               <el-select
                 style="width: 100px"
                 v-model="exchangeForm.selectedStaff"
@@ -470,42 +470,42 @@
                 />
               </el-select>
             </el-form-item>
-            <el-form-item label="原因">
+            <el-form-item :label="transformI18n($t('checkIn.reason'))">
               <el-input v-model="exchangeForm.changeReason" type="textarea" />
             </el-form-item>
           </el-form>
         </div>
         <template #footer>
           <div class="flex justify-end">
-            <el-button type="primary" @click="exchangeRoom">调换</el-button>
-            <el-button @click="roomChangeDialogVisible = false">取消</el-button>
+            <el-button type="primary" @click="exchangeRoom">{{ transformI18n($t('checkIn.exchangeRoom')) }}</el-button>
+            <el-button @click="roomChangeDialogVisible = false">{{ transformI18n($t('permission.cancel')) }}</el-button>
           </div>
         </template>
       </el-card>
     </el-dialog>
     <!-- 调换申请单 -->
-    <el-dialog v-model="exchangeVisible" title="调换申请" width="600px">
+    <el-dialog v-model="exchangeVisible" :title="transformI18n($t('title.roomChangeApply'))" width="600px">
       <el-card>
         <template #header>
           <div class="card-header flex flex-wrap justify-between">
             <span
-              ><span class="font-bold">工号：</span
+              ><span class="font-bold">{{ transformI18n($t('checkIn.staffNum')) }}：</span
               >{{ onlyOneSelection.staffNum }}</span
             >
             <span
-              ><span class="font-bold">姓名：</span
+              ><span class="font-bold">{{ transformI18n($t('checkIn.staffName')) }}：</span
               >{{ onlyOneSelection.staffName }}</span
             >
             <span
-              ><span class="font-bold">部门：</span
+              ><span class="font-bold">{{ transformI18n($t('checkIn.dept')) }}：</span
               >{{ onlyOneSelection.dept }}</span
             >
             <span
-              ><span class="font-bold">职务：</span
+              ><span class="font-bold">{{ transformI18n($t('checkIn.post')) }}：</span
               >{{ onlyOneSelection.post }}</span
             >
             <span
-              ><span class="font-bold">电话：</span
+              ><span class="font-bold">{{ transformI18n($t('checkIn.phone')) }}：</span
               >{{ onlyOneSelection.phone }}</span
             >
           </div>
@@ -516,9 +516,9 @@
             :rules="exchangeApplyRules"
             ref="exchangeApplyRef"
             class="flex flex-wrap justify-start flex-col"
-            label-width="80px"
+            label-width="150px"
           >
-            <el-form-item label="申请楼栋">
+            <el-form-item :label="transformI18n($t('checkIn.applyBuilding'))">
               <el-select
                 style="width: 200px"
                 v-model="exchangeApplyForm.selectedBuilding"
@@ -531,7 +531,7 @@
                 />
               </el-select>
             </el-form-item>
-            <el-form-item label="申请楼层">
+            <el-form-item :label="transformI18n($t('building.floor'))">
               <el-select
                 style="width: 100px"
                 v-model="exchangeApplyForm.selectedFloor"
@@ -544,7 +544,7 @@
                 />
               </el-select>
             </el-form-item>
-            <el-form-item label="申请房间">
+            <el-form-item :label="transformI18n($t('building.roomNum'))">
               <el-select
                 style="width: 100px"
                 v-model="exchangeApplyForm.selectedRoom"
@@ -558,39 +558,39 @@
                 />
               </el-select>
             </el-form-item>
-        <el-form-item label="区域" prop="area" class="flex items-center">
-            <el-checkbox @change="checkedCross= false" v-model="checkedSame" label="同区" size="large" />
-            <el-checkbox @change="checkedSame= false" v-model="checkedCross" label="跨区" size="large" />
+        <el-form-item :label="transformI18n($t('checkIn.area'))" prop="area" class="flex items-center">
+            <el-checkbox @change="checkedCross= false" v-model="checkedSame" :label="transformI18n($t('checkIn.sameArea'))" size="large" />
+            <el-checkbox @change="checkedSame= false" v-model="checkedCross" :label="transformI18n($t('checkIn.crossArea'))" size="large" />
         </el-form-item>
           </el-form>
         </div>
         <template #footer>
           <div class="flex justify-end">
-            <el-button type="primary" @click="exchangeApply">申请</el-button>
-            <el-button @click="exchangeVisible = false">取消</el-button>
+            <el-button type="primary" @click="exchangeApply">{{ transformI18n($t('checkIn.apply')) }}</el-button>
+            <el-button @click="exchangeVisible = false">{{ transformI18n($t('permission.cancel')) }}</el-button>
           </div>
         </template>
       </el-card>
     </el-dialog>
     <!-- 办理退宿 -->
-    <el-dialog v-model="checkOutVisible" title="办理退宿" width="600px">
+    <el-dialog v-model="checkOutVisible" :title="transformI18n($t('title.checkOut'))" width="600px">
       <el-card>
         <template #header>
           <div class="card-header flex flex-wrap justify-between">
              <span
-              ><span class="font-bold">工号：</span
+              ><span class="font-bold">{{ transformI18n($t('checkIn.staffNum')) }}：</span
               >{{ onlyOneSelection.staffNum }}</span
             >
             <span
-              ><span class="font-bold">姓名：</span
+              ><span class="font-bold">{{ transformI18n($t('checkIn.staffName')) }}：</span
               >{{ onlyOneSelection.staffName }}</span
             >
             <span
-              ><span class="font-bold">性别：</span
+              ><span class="font-bold">{{ transformI18n($t('checkIn.sex')) }}：</span
               >{{ onlyOneSelection.sex }}</span
             >
             <span
-              ><span class="font-bold">部门：</span
+              ><span class="font-bold">{{ transformI18n($t('checkIn.dept')) }}：</span
               >{{ onlyOneSelection.dept }}</span
             >
           </div>
@@ -601,100 +601,100 @@
             :rules="checkOutRules"
             ref="checkOutRef"
             class="flex flex-wrap justify-start flex-col"
-            label-width="80px"
+            label-width="150px"
           >
-            <el-form-item label="退宿日期" prop="checkOutDate">
+            <el-form-item :label="transformI18n($t('checkIn.checkOutDate'))" prop="checkOutDate">
               <el-date-picker
                 v-model="checkOutForm.checkOutDate"
                 type="date"
                 placeholder="选择日期"
               />
             </el-form-item>
-            <el-form-item label="出矿日期" prop="leaveDate">
+            <el-form-item :label="transformI18n($t('checkIn.leaveDate'))" prop="leaveDate">
               <el-date-picker
                 v-model="checkOutForm.leaveDate"
                 type="date"
                 placeholder="选择日期"
               />
             </el-form-item>
-        <el-form-item label="钥匙" prop="keyFlag">
+        <el-form-item :label="transformI18n($t('checkIn.keyFlag'))" prop="keyFlag">
           <el-select style="width: 100px" v-model="checkOutForm.keyFlag">
             <el-option value="无" label="无" />
             <el-option value="未退" label="未退" />
             <el-option value="退还" label="退还" />
           </el-select>
         </el-form-item>
-        <el-form-item label="床上用品" prop="beddingFlag">
+        <el-form-item :label="transformI18n($t('checkIn.beddingFlag'))" prop="beddingFlag">
           <el-select style="width: 100px" v-model="checkOutForm.beddingFlag">
             <el-option value="无" label="无" />
             <el-option value="未退" label="未退" />
             <el-option value="退还" label="退还" />
           </el-select>
         </el-form-item>
-        <el-form-item label="枕头" prop="pillowFlag">
+        <el-form-item :label="transformI18n($t('checkIn.pillowFlag'))" prop="pillowFlag">
           <el-select style="width: 100px" v-model="checkOutForm.pillowFlag">
             <el-option value="无" label="无" />
             <el-option value="未退" label="未退" />
             <el-option value="退还" label="退还" />
           </el-select>
         </el-form-item>
-        <el-form-item label="脸盆" prop="basin">
+        <el-form-item :label="transformI18n($t('checkIn.basin'))" prop="basin">
           <el-select style="width: 100px" v-model="checkOutForm.basin">
             <el-option value="无" label="无" />
             <el-option value="未退" label="未退" />
             <el-option value="退还" label="退还" />
           </el-select>
         </el-form-item>
-        <el-form-item label="押金" prop="deposit">
+        <el-form-item :label="transformI18n($t('checkIn.deposit'))" prop="deposit">
           <el-select style="width: 100px" v-model="checkOutForm.deposit">
             <el-option value="无" label="无" />
             <el-option value="未退" label="未退" />
             <el-option value="退还" label="退还" />
           </el-select>
         </el-form-item>
-        <el-form-item label="打印类型" prop="printType" class="flex items-center">
-            <el-checkbox @change="checkedOuter = false" v-model="checkedInner" label="打印内部人员退宿证明" size="large" />
-            <el-checkbox @change="checkedInner = false" v-model="checkedOuter" label="打印外协人员退宿证明" size="large" />
+        <el-form-item :label="transformI18n($t('checkIn.printType'))" prop="printType" class="flex items-center">
+            <el-checkbox @change="checkedOuter = false" v-model="checkedInner" :label="transformI18n($t('checkIn.printInner'))" size="large" />
+            <el-checkbox @change="checkedInner = false" v-model="checkedOuter" :label="transformI18n($t('checkIn.printOuter'))" size="large" />
         </el-form-item>
-        <el-form-item label="退宿理由" prop="leaveReason">
+        <el-form-item :label="transformI18n($t('checkIn.leaveReason'))" prop="leaveReason">
           <el-select style="width: 100px" v-model="checkOutForm.leaveReason">
             <el-option value="辞职" label="辞职" />
             <el-option value="工程结束" label="工程结束" />
           </el-select>
         </el-form-item>
-            <el-form-item label="备注">
+            <el-form-item :label="transformI18n($t('checkIn.remark'))">
               <el-input v-model="checkOutForm.remark" type="textarea" style="width: 300px" />
             </el-form-item>
           </el-form>
         </div>
         <template #footer>
           <div class="flex justify-end">
-            <el-button type="primary" @click="checkOut" :disabled="!checkOutForm.checkOutDate || !checkOutForm.leaveDate">确认退宿</el-button>
-            <el-button @click="checkOutVisible = false">取消</el-button>
+            <el-button type="primary" @click="checkOut" :disabled="!checkOutForm.checkOutDate || !checkOutForm.leaveDate">{{ transformI18n($t('permission.sure')) }}</el-button>
+            <el-button @click="checkOutVisible = false">{{ transformI18n($t('permission.cancel')) }}</el-button>
           </div>
         </template>
       </el-card>
     </el-dialog>
     
     <!-- 配备钥匙申请 -->
-    <el-dialog v-model="keyVisible" title="配备钥匙申请" width="600px">
+    <el-dialog v-model="keyVisible" :title="transformI18n($t('title.printKey'))" width="600px">
       <el-card>
         <template #header>
           <div class="card-header flex flex-wrap justify-between">
              <span
-              ><span class="font-bold">工号：</span
+              ><span class="font-bold">{{ transformI18n($t('checkIn.staffNum')) }}：</span
               >{{ onlyOneSelection.staffNum }}</span
             >
             <span
-              ><span class="font-bold">姓名：</span
+              ><span class="font-bold">{{ transformI18n($t('checkIn.staffName')) }}：</span
               >{{ onlyOneSelection.staffName }}</span
             >
             <span
-              ><span class="font-bold">性别：</span
+              ><span class="font-bold">{{ transformI18n($t('checkIn.sex')) }}：</span
               >{{ onlyOneSelection.sex }}</span
             >
             <span
-              ><span class="font-bold">部门：</span
+              ><span class="font-bold">{{ transformI18n($t('checkIn.dept')) }}：</span
               >{{ onlyOneSelection.dept }}</span
             >
           </div>
@@ -705,20 +705,20 @@
             :rules="keyRules"
             ref="keyRef"
             class="flex flex-wrap justify-start flex-col"
-            label-width="80px"
+            label-width="150px"
           >
-          <el-form-item label="数量">
+          <el-form-item :label="transformI18n($t('checkIn.num'))">
               <el-input v-model="keyForm.num" style="width: 200px"  />
             </el-form-item>
-            <el-form-item label="原因">
+            <el-form-item :label="transformI18n($t('checkIn.reason'))">
               <el-input v-model="keyForm.reason" type="textarea" style="width: 300px" />
             </el-form-item>
           </el-form>
         </div>
         <template #footer>
           <div class="flex justify-end">
-            <el-button type="primary" @click="printKey">申请</el-button>
-            <el-button @click="keyVisible = false">取消</el-button>
+            <el-button type="primary" @click="printKey">{{ transformI18n($t('checkIn.apply')) }}</el-button>
+            <el-button @click="keyVisible = false">{{ transformI18n($t('permission.cancel')) }}</el-button>
           </div>
         </template>
       </el-card>
@@ -755,6 +755,10 @@ import {
 } from "@/api/checkin";
 import {checkOutStaff} from "@/api/checkout";
 import { getBuildingRoom, saveBuildingInfo } from "@/api/building";
+import { transformI18n,$t } from "@/plugins/i18n";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
 
 // Pagination variables
 const currentPage = ref(1);

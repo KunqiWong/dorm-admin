@@ -121,3 +121,90 @@ sidebar:
   roomSwap: 房间调换
   buildingEmployeeInfo: 楼栋员工信息
   reports: 报表
+building:
+  addRoom: 新增房间
+  exportExcel: 导出Excel
+  importExcel: 导入Excel
+  searchRoom: 搜索房间信息
+  createTime: 创建时间
+  updateBy: 更新人
+  updateTime: 更新时间
+  delete: 删除
+  edit: 编辑
+  buildingNum: 楼栋
+  floor: 楼层
+  roomNum: 房间号
+  capacity: 可住人数
+  capacityNum: 已住人数
+  roomStandard: 房间标准
+  roomType: 房间属性
+  remark: 备注
+  operation: 操作
+title:
+  buildingInfo: 楼栋信息
+  confirmDelete: 确认删除
+  employeeInfo: 员工信息
+  roomInfo: 房间信息
+  roomChange: 房间调换
+  roomChangeApply: 调换申请
+  checkOut: 办理退宿
+  printKey: 配备钥匙申请
+checkIn:
+  inputRoomNum: 请输入房间号
+  lifeArea: 生活区
+  totalCapacity: 可住人数
+  totalOccupied: 已住人数
+  occupancyRate: 剩余空位
+  occupancyRateTip: 入住率  
+  addEmployee: 新增员工
+  editRoomInfo: 修改房间信息
+  roomChange: 调换房间
+  printRoomChange: 打印调换申请单
+  checkOut: 办理退宿
+  printCheckOut: 打印退宿证明
+  printKey: 配备钥匙申请
+  printDoorplate: 打印门牌
+  staffNum: 工号
+  staffName: 姓名
+  sex: 性别
+  country: 国籍
+  company: 公司
+  dept: 部门
+  post: 职务
+  phone: 电话
+  visaType: 签证类型
+  passportNo: 护照号
+  bedNum: 床位
+  keyFlag: 钥匙
+  checkinDate: 入住时间
+  remark: 备注
+  reason: 原因
+  exchangeRoom: 调换
+  applyBuilding: 申请楼栋
+  applyFloor: 申请楼层
+  applyRoom: 申请房间
+  area: 区域
+  sameArea: 同区
+  crossArea: 跨区
+  apply: 申请
+  checkOutDate: 退宿日期
+  leaveDate: 出矿日期
+  beddingFlag: 床上用品
+  pillowFlag: 枕头
+  basin: 脸盆
+  deposit: 押金
+  printType: 打印类型
+  leaveReason: 退宿理由
+  printInner: 打印内部人员退宿证明
+  printOuter: 打印外协人员退宿证明
+  num: 数量
+checkOut:
+  operator: 操作人
+  startTime: 开始时间
+  endTime: 结束时间
+  createBy: 创建人
+  cardFlag: 饭卡
+  operateType: 操作类型
+employeeSearch:
+  addEmployee: 新增员工
+  searchEmployee: 搜索员工信息

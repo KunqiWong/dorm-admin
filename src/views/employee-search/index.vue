@@ -4,75 +4,75 @@
       <el-space style="margin-bottom: 20px">
         <el-button type="primary" @click="openDialog(null)">
           <el-icon><Plus /></el-icon>
-          新增员工
+          {{ transformI18n($t('employeeSearch.addEmployee')) }}
         </el-button>
 
         <!-- 导出和导入按钮 -->
         <el-button @click="handleExport" type="success">
           <el-icon><Download /></el-icon>
-          导出 Excel
+          {{ transformI18n($t('building.exportExcel')) }}
         </el-button>
         <el-button @click="handleImport" type="primary">
           <el-icon><Upload /></el-icon>
-          导入 Excel
+          {{ transformI18n($t('building.importExcel')) }}
         </el-button>
 
         <el-input
           v-model="searchQuery"
-          placeholder="搜索员工信息"
+          :placeholder="transformI18n($t('employeeSearch.searchEmployee'))"
           @keyup.enter="fetchEmployeeList"
           clearable
           style="width: 300px"
         />
-        <el-button @click="fetchEmployeeList">
+        <el-button @click="fetchEmployeeList" type="primary">
           <el-icon><Search /></el-icon>
-          搜索
+          {{ transformI18n($t('permission.search')) }}
         </el-button>
         <el-dialog
-          title="导入Excel"
+          :title="transformI18n($t('building.importExcel'))"
           v-model="importDialogVisible"
           width="400px"
         >
           <UploadComponent @dataParsed="handleParsedData" />
           <div slot="footer" class="dialog-footer flex justify-end">
-            <el-button type="primary" @click="importExcel">确认</el-button>
-            <el-button @click="importDialogVisible = false">取消</el-button>
+            <el-button type="primary" @click="importExcel">{{ transformI18n($t('permission.sure')) }}</el-button>
+            <el-button @click="importDialogVisible = false">{{ transformI18n($t('permission.cancel')) }}</el-button>
           </div>
         </el-dialog>
       </el-space>
 
       <el-table :data="employeeList" border style="width: 100%">
-        <el-table-column label="操作" width="160">
+        <el-table-column :label="transformI18n($t('building.operation'))" width="180">
           <template #default="{ row }">
             <el-button type="primary" size="small" @click="openDialog(row)">
               <el-icon><Edit /></el-icon>
-              编辑
+              {{ transformI18n($t('building.edit')) }}
             </el-button>
             <el-button type="danger" size="small" @click="confirmDelete(row)">
               <el-icon><Delete /></el-icon>
-              删除
+              {{ transformI18n($t('building.delete')) }}
             </el-button>
           </template>
         </el-table-column>
-        <el-table-column prop="buildingNum" label="楼栋" width="150" />
-        <el-table-column prop="floor" label="楼层" width="100" />
-        <el-table-column prop="roomNum" label="房间号" width="100" />
-        <el-table-column prop="roomStandard" label="房间标准" width="100" />
-        <el-table-column prop="staffNum" label="工号" width="120" />
-        <el-table-column prop="staffName" label="姓名" width="100" />
-        <el-table-column prop="sex" label="性别" width="100" />
-        <el-table-column prop="contry" label="国籍" width="100" />
-        <el-table-column prop="company" label="公司" width="150" />
-        <el-table-column prop="dept" label="部门" width="150" />
-        <el-table-column prop="post" label="职务" width="100" />
-        <el-table-column prop="phone" label="电话" width="100" />
-        <el-table-column prop="visaType" label="签证类型" width="100" />
-        <el-table-column prop="passportNo" label="护照号" width="120" />
-        <el-table-column prop="bedNum" label="床位" width="100" />
-        <el-table-column prop="keyFlag" label="钥匙" width="100" />
-        <el-table-column prop="checkinDate" label="入住时间" width="100" />
-        <el-table-column prop="deposit" label="入住押金" width="100" />
-        <el-table-column prop="remark" label="备注" width="300" />
+        <el-table-column prop="buildingNum" :label="transformI18n($t('building.buildingNum'))" width="150" />
+        <el-table-column prop="floor" :label="transformI18n($t('building.floor'))" width="100" />
+        <el-table-column prop="roomNum" :label="transformI18n($t('building.roomNum'))" width="100" />
+        <el-table-column prop="roomStandard" :label="transformI18n($t('building.roomStandard'))" width="100" />
+        <el-table-column prop="staffNum" :label="transformI18n($t('checkIn.staffNum'))" width="120" />
+        <el-table-column prop="staffName" :label="transformI18n($t('checkIn.staffName'))" width="100" />
+        <el-table-column prop="sex" :label="transformI18n($t('checkIn.sex'))" width="100" />
+        <el-table-column prop="contry" :label="transformI18n($t('checkIn.country'))" width="100" />
+        <el-table-column prop="company" :label="transformI18n($t('checkIn.company'))" width="150" />
+        <el-table-column prop="dept" :label="transformI18n($t('checkIn.dept'))" width="150" />
+        <el-table-column prop="post" :label="transformI18n($t('checkIn.post'))" width="100" />
+        <el-table-column prop="phone" :label="transformI18n($t('checkIn.phone'))" width="100" />
+        <el-table-column prop="visaType" :label="transformI18n($t('checkIn.visaType'))" width="100" />
+        <el-table-column prop="passportNo" :label="transformI18n($t('checkIn.passportNo'))" width="120" />
+        <el-table-column prop="bedNum" :label="transformI18n($t('checkIn.bedNum'))" width="100" />
+        <el-table-column prop="keyFlag" :label="transformI18n($t('checkIn.keyFlag'))" width="100" />
+        <el-table-column prop="checkinDate" :label="transformI18n($t('checkIn.checkinDate'))" width="100" />
+        <el-table-column prop="deposit" :label="transformI18n($t('checkIn.deposit'))" width="100" />
+        <el-table-column prop="remark" :label="transformI18n($t('checkIn.remark'))" width="300" />
       </el-table>
 
       <!-- Pagination -->
@@ -88,87 +88,87 @@
     </el-card>
 
     <!-- Confirm Delete Dialog -->
-    <el-dialog title="确认删除" v-model="deleteDialogVisible" width="400px">
+    <el-dialog :title="transformI18n($t('title.confirmDelete'))" v-model="deleteDialogVisible" width="400px">
       <span>您确定要删除"{{ deleteEmployee?.staffName || "该员工" }}"吗？</span>
       <div slot="footer" class="dialog-footer flex justify-end">
-        <el-button type="primary" @click="deleteRaw">确认</el-button>
-        <el-button @click="deleteDialogVisible = false">取消</el-button>
+        <el-button type="primary" @click="deleteRaw">{{ transformI18n($t('permission.sure')) }}</el-button>
+        <el-button @click="deleteDialogVisible = false">{{ transformI18n($t('permission.cancel')) }}</el-button>
       </div>
     </el-dialog>
 
-    <el-dialog v-model="dialogVisible" title="员工信息" width="800px">
+    <el-dialog v-model="dialogVisible" :title="transformI18n($t('title.employeeInfo'))" width="800px">
       <el-form
         :model="form"
         :rules="rules"
         ref="formRef"
-        label-width="100px"
+        label-width="150px"
         class="flex flex-wrap"
       >
-        <el-form-item label="楼栋" prop="buildingNum">
+        <el-form-item :label="transformI18n($t('building.buildingNum'))" prop="buildingNum">
           <el-input v-model="form.buildingNum" />
         </el-form-item>
-        <el-form-item label="楼层" prop="floor">
+        <el-form-item :label="transformI18n($t('building.floor'))" prop="floor">
           <el-input v-model="form.floor" />
         </el-form-item>
-        <el-form-item label="房间号" prop="roomNum">
+        <el-form-item :label="transformI18n($t('building.roomNum'))" prop="roomNum">
           <el-input v-model="form.roomNum" />
         </el-form-item>
-        <el-form-item label="房间类型" prop="roomStandard">
+        <el-form-item :label="transformI18n($t('building.roomType'))" prop="roomStandard">
           <el-input v-model="form.roomStandard" />
         </el-form-item>
-        <el-form-item label="工号" prop="staffNum">
+        <el-form-item :label="transformI18n($t('checkIn.staffNum'))" prop="staffNum">
           <el-input v-model="form.staffNum" />
         </el-form-item>
-        <el-form-item label="姓名" prop="staffName">
+        <el-form-item :label="transformI18n($t('checkIn.staffName'))" prop="staffName">
           <el-input v-model="form.staffName" />
         </el-form-item>
-        <el-form-item label="性别" prop="sex">
+        <el-form-item :label="transformI18n($t('checkIn.sex'))" prop="sex">
           <el-input v-model="form.sex" />
         </el-form-item>
-        <el-form-item label="国籍" prop="contry">
+        <el-form-item :label="transformI18n($t('checkIn.country'))" prop="contry">
           <el-input v-model="form.contry" />
         </el-form-item>
-        <el-form-item label="公司" prop="company">
+        <el-form-item :label="transformI18n($t('checkIn.company'))" prop="company">
           <el-input v-model="form.company" />
         </el-form-item>
-        <el-form-item label="部门" prop="dept">
+        <el-form-item :label="transformI18n($t('checkIn.dept'))" prop="dept">
           <el-input v-model="form.dept" />
         </el-form-item>
-        <el-form-item label="职务" prop="post">
+        <el-form-item :label="transformI18n($t('checkIn.post'))" prop="post">
           <el-input v-model="form.post" />
         </el-form-item>
-        <el-form-item label="电话" prop="phone">
+        <el-form-item :label="transformI18n($t('checkIn.phone'))" prop="phone">
           <el-input v-model="form.phone" />
         </el-form-item>
-        <el-form-item label="签证类型" prop="visaType">
+        <el-form-item :label="transformI18n($t('checkIn.visaType'))" prop="visaType">
           <el-input v-model="form.visaType" />
         </el-form-item>
-        <el-form-item label="护照号" prop="passportNo">
+        <el-form-item :label="transformI18n($t('checkIn.passportNo'))" prop="passportNo">
           <el-input v-model="form.passportNo" />
         </el-form-item>
-        <el-form-item label="床位" prop="bedNum">
+        <el-form-item :label="transformI18n($t('checkIn.bedNum'))" prop="bedNum">
           <el-input v-model="form.bedNum" />
         </el-form-item>
-        <el-form-item label="钥匙" prop="keyFlag">
+        <el-form-item :label="transformI18n($t('checkIn.keyFlag'))" prop="keyFlag">
           <el-input v-model="form.keyFlag" />
         </el-form-item>
-        <el-form-item label="入住日期" prop="checkinDate">
+        <el-form-item :label="transformI18n($t('checkIn.checkinDate'))" prop="checkinDate">
           <el-date-picker
             v-model="form.checkinDate"
             type="date"
             placeholder="选择日期"
           />
         </el-form-item>
-        <el-form-item label="入住押金" prop="deposit">
+        <el-form-item :label="transformI18n($t('checkIn.deposit'))" prop="deposit">
           <el-input v-model="form.deposit" />
         </el-form-item>
-        <el-form-item label="备注" prop="remark">
+        <el-form-item :label="transformI18n($t('checkIn.remark'))" prop="remark">
           <el-input v-model="form.remark" />
         </el-form-item>
       </el-form>
       <template #footer>
-        <el-button type="primary" @click="saveEmployee">保存</el-button>
-        <el-button @click="dialogVisible = false">取消</el-button>
+        <el-button type="primary" @click="saveEmployee">{{ transformI18n($t('permission.submit')) }}</el-button>
+        <el-button @click="dialogVisible = false">{{ transformI18n($t('permission.cancel')) }}</el-button>
       </template>
     </el-dialog>
   </div>
@@ -194,6 +194,10 @@ import {
 } from "@/api/employee";
 import * as XLSX from "xlsx-js-style";
 import UploadComponent from "@/components/Upload.vue";
+import { transformI18n,$t } from "@/plugins/i18n";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
 
 // Pagination variables
 const currentPage = ref(1);

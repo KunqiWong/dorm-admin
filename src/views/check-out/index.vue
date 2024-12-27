@@ -4,30 +4,30 @@
       <el-space style="margin-bottom: 20px">
         <el-button @click="handleExport" type="success">
           <el-icon><Download /></el-icon>
-          导出 Excel
+          {{ transformI18n($t('building.exportExcel')) }}
         </el-button>
 
         <el-input
           v-model="searchQuery.operator"
-          placeholder="操作人"
+          :placeholder="transformI18n($t('checkOut.operator'))"
           clearable
           style="width: 100px"
         />
         <el-input
           v-model="searchQuery.staffName"
-          placeholder="员工姓名"
+          :placeholder="transformI18n($t('checkIn.staffName'))"
           clearable
           style="width: 100px"
         />
         <el-input
           v-model="searchQuery.staffNum"
-          placeholder="工号"
+          :placeholder="transformI18n($t('checkIn.staffNum'))"
           clearable
           style="width: 200px"
         />
         <el-input
           v-model="searchQuery.passportNo"
-          placeholder="护照号"
+          :placeholder="transformI18n($t('checkIn.passportNo'))"
           clearable
           style="width: 200px"
         />
@@ -36,8 +36,8 @@
           v-model="searchQuery.timeRange"
           type="daterange"
           range-separator="至"
-          start-placeholder="开始日期"
-          end-placeholder="结束日期"
+          :start-placeholder="transformI18n($t('checkOut.startTime'))"
+          :end-placeholder="transformI18n($t('checkOut.endTime'))"
           format="YYYY-MM-DD"
           style="width: 300px"
           clearable
@@ -45,33 +45,33 @@
 
         <el-button @click="fetchCheckOutList" type="primary">
           <el-icon><Search /></el-icon>
-          搜索
+          {{ transformI18n($t('permission.search')) }}
         </el-button>
       </el-space>
 
       <!-- 表格 -->
       <el-table :data="checkoutList" border style="width: 100%">
-        <el-table-column prop="operator" label="登记人" width="100" />
-        <el-table-column prop="roomInfo" label="房间信息" width="200" />
-        <el-table-column prop="staffName" label="员工姓名" width="100" />
-        <el-table-column prop="staffNum" label="工号" width="100" />
-        <el-table-column prop="passportNo" label="护照号" width="150" />
-        <el-table-column prop="sex" label="性别" width="100" />
-        <el-table-column prop="dept" label="部门" width="200" />
-        <el-table-column prop="company" label="公司" width="200" />
-        <el-table-column prop="checkinDate" label="入住日期" width="150" />
-        <el-table-column prop="checkoutDate" label="退宿日期" width="150" />
-        <el-table-column prop="leaveDate" label="出矿日期" width="150" />
-        <el-table-column prop="keyFlag" label="钥匙" width="100" />
-        <el-table-column prop="cardFlag" label="饭卡" width="100" />
-        <el-table-column prop="beddingFlag" label="床上用品" width="100" />
-        <el-table-column prop="pillowFlag" label="枕头" width="100" />
-        <el-table-column prop="basin" label="脸盆" width="100" />
-        <el-table-column prop="deposit" label="押金" width="100" />
-        <el-table-column prop="leaveReason" label="退宿理由" width="200" />
-        <el-table-column prop="remark" label="备注" width="200" />
-        <el-table-column prop="createBy" label="创建人" width="100" />
-        <el-table-column prop="createTime" label="创建时间" width="150" />
+        <el-table-column prop="operator" :label="transformI18n($t('checkOut.operator'))" width="100" />
+        <el-table-column prop="roomInfo" :label="transformI18n($t('title.roomInfo'))" width="200" />
+        <el-table-column prop="staffName" :label="transformI18n($t('checkIn.staffName'))" width="100" />
+        <el-table-column prop="staffNum" :label="transformI18n($t('checkIn.staffNum'))" width="100" />
+        <el-table-column prop="passportNo" :label="transformI18n($t('checkIn.passportNo'))" width="150" />
+        <el-table-column prop="sex" :label="transformI18n($t('checkIn.sex'))" width="100" />
+        <el-table-column prop="dept" :label="transformI18n($t('checkIn.dept'))" width="200" />
+        <el-table-column prop="company" :label="transformI18n($t('checkIn.company'))" width="200" />
+        <el-table-column prop="checkinDate" :label="transformI18n($t('checkIn.checkinDate'))" width="150" />
+        <el-table-column prop="checkoutDate" :label="transformI18n($t('checkIn.checkOutDate'))" width="150" />
+        <el-table-column prop="leaveDate" :label="transformI18n($t('checkIn.leaveDate'))" width="150" />
+        <el-table-column prop="keyFlag" :label="transformI18n($t('checkIn.keyFlag'))" width="100" />
+        <el-table-column prop="cardFlag" :label="transformI18n($t('checkOut.cardFlag'))" width="100" />
+        <el-table-column prop="beddingFlag" :label="transformI18n($t('checkIn.beddingFlag'))" width="100" />
+        <el-table-column prop="pillowFlag" :label="transformI18n($t('checkIn.pillowFlag'))" width="100" />
+        <el-table-column prop="basin" :label="transformI18n($t('checkIn.basin'))" width="100" />
+        <el-table-column prop="deposit" :label="transformI18n($t('checkIn.deposit'))" width="100" />
+        <el-table-column prop="leaveReason" :label="transformI18n($t('checkIn.leaveReason'))" width="200" />
+        <el-table-column prop="remark" :label="transformI18n($t('checkIn.remark'))" width="200" />
+        <el-table-column prop="createBy" :label="transformI18n($t('checkOut.createBy'))" width="100" />
+        <el-table-column prop="createTime" :label="transformI18n($t('building.createTime'))" width="150" />
       </el-table>
 
       <el-pagination
@@ -93,6 +93,11 @@ import { ElMessage } from "element-plus";
 import { Search, Download } from "@element-plus/icons-vue";
 import { getCheckOutList, selectLeaveInfoAll } from "@/api/checkout";
 import * as XLSX from "xlsx-js-style";
+import { transformI18n,$t } from "@/plugins/i18n";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
+
 
 // 分页相关变量
 const currentPage = ref(1);

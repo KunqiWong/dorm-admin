@@ -121,3 +121,90 @@ sidebar:
   roomSwap: Room Swap
   buildingEmployeeInfo: Building Employee Info
   reports: Reports
+building:
+  addRoom: Add Room
+  exportExcel: Export Excel
+  importExcel: Import Excel
+  searchRoom: Search Room
+  createTime: Create Time
+  updateBy: Update By
+  updateTime: Update Time
+  delete: Delete
+  edit: Edit
+  buildingNum: Building
+  floor: Floor
+  roomNum: Room Number
+  capacity: Capacity
+  capacityNum: Capacity
+  roomStandard: Room Standard
+  roomType: Room Type
+  remark: Remark
+  operation: Operation
+title:
+  buildingInfo: Building Info
+  confirmDelete: Confirm Delete
+  employeeInfo: Employee Info
+  roomInfo: Room Info
+  roomChange: Room Change
+  roomChangeApply: Room Change Apply
+  checkOut: Check Out
+  printKey: Print Key
+checkIn:
+  inputRoomNum: Please enter room number
+  lifeArea: Life Area
+  totalCapacity: Total Capacity
+  totalOccupied: Total Occupied
+  occupancyRate: Occupancy Rate
+  occupancyRateTip: Occupancy Rate
+  addEmployee: Add Employee
+  editRoomInfo: Edit Room Info
+  roomChange: Room Change
+  printRoomChange: Print Room Change
+  checkOut: Check Out
+  printCheckOut: Print Check Out
+  printKey: Print Key
+  printDoorplate: Print Doorplate
+  staffNum: Staff Number
+  staffName: Staff Name
+  sex: Sex
+  country: Country
+  company: Company
+  dept: Department
+  post: Post
+  phone: Phone
+  visaType: Visa Type
+  passportNo: Passport Number
+  bedNum: Bed Number
+  keyFlag: Key
+  checkinDate: Check In Date
+  remark: Remark
+  reason: Reason
+  exchangeRoom: Exchange
+  applyBuilding: Apply Building
+  applyFloor: Apply Floor
+  applyRoom: Apply Room
+  area: Area
+  sameArea: Same
+  crossArea: Cross
+  apply: Apply
+  checkOutDate: Check Out Date
+  leaveDate: Leave Date
+  beddingFlag: Bedding
+  pillowFlag: Pillow
+  basin: Basin
+  deposit: Deposit
+  printType: Print Type
+  leaveReason: Leave Reason
+  printInner: Print Internal Leave
+  printOuter: Print External Leave
+  num: Number
+checkOut:
+  operator: Operator
+  startTime: Start Time
+  endTime: End Time
+  createBy: Create By
+  cardFlag: Meal Card
+  operateType: Operate Type
+employeeSearch:
+  addEmployee: Add Employee
+  searchEmployee: Search Employee
