@@ -1259,8 +1259,11 @@ const printOutProof = () => {
 //打印门牌
 const printRoom = () => {
   const reportPath = "http://10.1.11.40/decision/view/report?viewlet=dorm/%25E9%2597%25A8%25E7%2589%258C.cpt&op=view"; // 报表路径
-
-  window.open(reportPath+`&buildingNum=${onlyOneSelection.value.buildingNum}&roomNum=${onlyOneSelection.value.roomNum}`, "_blank");
+  if(roomDetail.value.roomNum) {
+    window.open(reportPath+`&buildingNum=${roomDetail.value.buildingNum}&roomNum=${roomDetail.value.roomNum}`, "_blank");
+  } else {
+    window.open(reportPath+`&buildingNum=${onlyOneSelection.value.buildingNum}&roomNum=${onlyOneSelection.value.roomNum}`, "_blank");
+  }
 };
 //打印钥匙
 const printKey = () => {

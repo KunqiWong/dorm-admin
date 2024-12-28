@@ -43,8 +43,8 @@ export const getLogin = (data?: object) => {
 export const getAdminList = (data?: object) => {
   return http.request<UserResult>("post", baseUrlApi("admin/list"), { data });
 };
-export const changeAdmin = (data?: object) => {
-  return http.request<UserResult>("post", baseUrlApi("admin/change"), { data });
+export const changeAdmin = (params?: object) => {
+  return http.request<UserResult>("get", baseUrlApi("admin/change"), { params });
 };
 export const createAdmin = (data?: object) => {
   return http.request<UserResult>("post", baseUrlApi("admin/create"), { data });
